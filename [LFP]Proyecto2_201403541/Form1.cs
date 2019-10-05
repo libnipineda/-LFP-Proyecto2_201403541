@@ -18,6 +18,8 @@ namespace _LFP_Proyecto2_201403541
             InitializeComponent();
         }
 
+        Lexico lex = new Lexico();
+
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog abrir = new OpenFileDialog();
@@ -71,7 +73,7 @@ namespace _LFP_Proyecto2_201403541
 
         private void tablaTokenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            lex.Reporte1();   
         }
 
         private void tablaSímbolosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -81,7 +83,7 @@ namespace _LFP_Proyecto2_201403541
 
         private void tablaTokenErroresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            lex.Reporte2();
         }
 
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
