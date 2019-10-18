@@ -19,12 +19,175 @@ namespace _LFP_Proyecto2_201403541
 
         public void Scanner(string cadena)
         {
+            int estado = 0;
+            for (int i = 0; i < cadena.Length; i++)
+            {
+                switch (estado)
+                {
+                    case 0:
+                        if (((char)09).Equals(cadena[i]) || ((char)32).Equals(cadena[i])) { estado = 0; } // tecla tab, espacio
+                        else if (((char)10).Equals(cadena[i])) { estado = 0; fila++; columna++; } // salto de linea
+                        else if (char.IsNumber(cadena[i])) { estado = 1; concatenar += cadena[i]; columna++; }
+                        else if (((char)40).Equals(cadena[i]) || ((char)41).Equals(cadena[i]) || ((char)91).Equals(cadena[i]) || ((char)93).Equals(cadena[i]) || ((char)123).Equals(cadena[i]) || ((char)125).Equals(cadena[i])) // signo "(" ")" "[" "]" "{" "}"
+                        { estado = 2; concatenar += cadena[i]; columna++; }
+                        else if (((char)46).Equals(cadena[i]) || ((char)59).Equals(cadena[i]) || ((char)44).Equals(cadena[i]) || ((char)42).Equals(cadena[i]) || ((char)60).Equals(cadena[i]) || ((char)62).Equals(cadena[i]) || ((char)33).Equals(cadena[i])) // signo "." ";" "," "*" "<" ">" "!" 
+                        { estado = 2; concatenar += cadena[i]; columna++; }
+                        else if (((char)43).Equals(cadena[i]) || ((char)45).Equals(cadena[i]) || ((char)61).Equals(cadena[i])) // signo "+" "-" "=" 
+                        { estado = 2; concatenar += cadena[i]; columna++; }
+                        else if (char.IsLetter(cadena[i])) { estado = 3; concatenar += cadena[i]; columna++; }
+                        else if (((char)34).Equals(cadena[i])) { estado = 4; concatenar += cadena[i]; columna++; } // signo "
+                        else if (((char)39).Equals(cadena[i])) { estado = 5; concatenar += cadena[i]; columna++; } // signo '
+                        else if (((char)47).Equals(cadena[i])) { estado = 6; concatenar += cadena[i]; columna++; } // signo /
+                        else
+                        {
+                            Etoken += cadena[i];
+                            Elista temp = new Elista();
+                            temp.Enum = nutknen;
+                            temp.Efila = fila;
+                            temp.Ecolumna = columna;
+                            temp.Elex = "" + Etoken;
+                            temp.Etkn = "Valor Desconocido.";
+                            ListaB.Add(temp); nutknen++; concatenar = ""; Etoken = "";
+                        }
+                        break;
 
+                    case 1:
+                        if (((char)46).Equals(cadena[i]))
+                        {
+                            estado = 7; concatenar += cadena; columna++;
+                        }
+                        break;
+
+                    case 2:
+                        AnalizarTkn(concatenar); i--; estado = estado - 1; estado = 0;
+                        AgregarListaA(nutknen, concatenar, idtkn, token, fila, columna);
+                        nutknen++; concatenar = "";
+                        break;
+
+                    case 3:
+                        if (char.IsLetter(cadena[i]))
+                        { estado = 3; concatenar += cadena[i]; columna++; }
+                        else if (char.IsNumber(cadena[i]))
+                        { estado = 3; concatenar += cadena[i]; columna++; }
+                        else if (((char)95).Equals(cadena[i]))
+                        { estado = 3; concatenar += cadena[i]; columna++; }
+                        else
+                        {
+                            AnalizarTkn(concatenar); i--; estado = estado - 1; estado = 0;
+                            AgregarListaA(nutknen, concatenar, 2, "Numero.", fila, columna);
+                            nutknen++; concatenar = "";
+                        }
+                        break;
+
+                    case 4:
+                        if (((char)34).Equals(cadena[i]))
+                        { estado = 12; concatenar += cadena[i]; columna++; }
+                        else
+                        { estado = 8; concatenar += cadena[i]; columna++; }
+                        break;
+
+                    case 5:
+                        if (((char)39).Equals(cadena[i]))
+                        { estado = 12; concatenar += cadena[i]; columna++; }
+                        else
+                        { estado = 9; concatenar += cadena[i]; columna++; }
+                        break;
+
+                    case 6:
+                        if (((char)47).Equals(cadena[i]))
+                        { estado = 10; concatenar += cadena[i]; columna++; }
+                        break;
+
+                    case 7:
+                        if (char.IsNumber(cadena[i]))
+                        { estado = 11; concatenar += cadena[i]; columna++; }
+                        break;
+
+                    case 8:
+                        if (((char)34).Equals(cadena[i]))
+                        { estado = 12; concatenar += cadena[i]; columna++; }
+                        else
+                        { estado = 8; concatenar += cadena[i]; columna++; }
+                        break;
+
+                    case 9:
+                        if (((char)39).Equals(cadena[i]))
+                        { estado = 12; concatenar += cadena[i]; columna++; }
+                        else
+                        { estado = 8; concatenar += cadena[i]; columna++; }
+                        break;
+
+                    case 10:
+                        if (((char)42).Equals(cadena[i]))
+                        { estado = 13; concatenar += cadena[i]; columna++; }
+                        else
+                        { estado = 14; concatenar += cadena[i]; columna++; }
+                        break;
+
+                    case 11:
+                        if (char.IsNumber(cadena[i]))
+                        { estado = 11; concatenar += cadena[i]; columna++; }
+                        else
+                        {
+                            AnalizarTkn(concatenar); i--; estado = estado - 1; estado = 0;
+                            AgregarListaA(nutknen, concatenar, 2, "Numero.", fila, columna);
+                            nutknen++; concatenar = "";
+                        }
+                        break;
+
+                    case 12:
+                        AnalizarTkn(concatenar); i--; estado = estado - 1; estado = 0;
+                        AgregarListaA(nutknen, concatenar, 2, "Numero.", fila, columna);
+                        nutknen++; concatenar = "";
+                        break;
+
+                    case 13:
+                        if (((char)10).Equals(cadena[i]))
+                        { estado = 14; concatenar += cadena[i]; columna++; }
+                        break;
+
+                    case 14:
+                        if (((char)42).Equals(cadena[i]))
+                        { estado = 15; concatenar += cadena[i]; columna++; }
+                        else if (((char)10).Equals(cadena[i]))
+                        { estado = 14; concatenar += cadena[i]; columna++; }
+                        else
+                        {
+                            AnalizarTkn(concatenar); i--; estado = estado - 1; estado = 0;
+                            AgregarListaA(nutknen, concatenar, 2, "Numero.", fila, columna);
+                            nutknen++; concatenar = "";
+                        }
+                            break;
+
+                    case 15:
+                        if (((char)47).Equals(cadena[i]))
+                        { estado = 16; concatenar += cadena[i]; columna++; }
+                        break;
+
+                    case 16:
+                        if (((char)47).Equals(cadena[i]))
+                        { estado = 17; concatenar += cadena[i]; columna++; }
+                        break;
+
+                    case 17:
+                        AnalizarTkn(concatenar); i--; estado = estado - 1; estado = 0;
+                        AgregarListaA(nutknen, concatenar, 2, "Numero.", fila, columna);
+                        nutknen++; concatenar = "";
+                        break;
+                }
+            }
+            MessageBox.Show("Analisis Concluido", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public void AnalizarTkn(string tkn)
         {
-
+            tkn.Trim();
+            switch (tkn)
+            {
+                default:
+                    token = "Cadena"; idtkns++; idtkn = idtkns;
+                    break;
+            }
         }
 
         public void AgregarListaA(int num, string lexema, int idtkn, string tkn, int fila, int columna)

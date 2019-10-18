@@ -68,7 +68,8 @@ namespace _LFP_Proyecto2_201403541
 
         private void generarTraduccionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Lexico scann = new Lexico();
+            scann.Scanner(richTextBox1.Text);
         }
 
         private void tablaTokenToolStripMenuItem_Click(object sender, EventArgs e)
