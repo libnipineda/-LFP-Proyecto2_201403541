@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarComoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.documentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,7 +49,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,11 +75,19 @@
             this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.archivoToolStripMenuItem.Text = "Archivo";
             // 
+            // abrirToolStripMenuItem
+            // 
+            this.abrirToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.abrirToolStripMenuItem.Text = "Abrir";
+            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
+            // 
             // guardarComoToolStripMenuItem
             // 
             this.guardarComoToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.guardarComoToolStripMenuItem.Name = "guardarComoToolStripMenuItem";
-            this.guardarComoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.guardarComoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.guardarComoToolStripMenuItem.Text = "Guardar Como";
             this.guardarComoToolStripMenuItem.Click += new System.EventHandler(this.guardarComoToolStripMenuItem_Click);
             // 
@@ -87,7 +95,7 @@
             // 
             this.salirToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -124,7 +132,7 @@
             // 
             this.tablaTokenToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.tablaTokenToolStripMenuItem.Name = "tablaTokenToolStripMenuItem";
-            this.tablaTokenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tablaTokenToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.tablaTokenToolStripMenuItem.Text = "Tabla Token";
             this.tablaTokenToolStripMenuItem.Click += new System.EventHandler(this.tablaTokenToolStripMenuItem_Click);
             // 
@@ -132,7 +140,7 @@
             // 
             this.tablaSímbolosToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.tablaSímbolosToolStripMenuItem.Name = "tablaSímbolosToolStripMenuItem";
-            this.tablaSímbolosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tablaSímbolosToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.tablaSímbolosToolStripMenuItem.Text = "Tabla símbolos";
             this.tablaSímbolosToolStripMenuItem.Click += new System.EventHandler(this.tablaSímbolosToolStripMenuItem_Click);
             // 
@@ -140,7 +148,7 @@
             // 
             this.tablaTokenErroresToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.tablaTokenErroresToolStripMenuItem.Name = "tablaTokenErroresToolStripMenuItem";
-            this.tablaTokenErroresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tablaTokenErroresToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.tablaTokenErroresToolStripMenuItem.Text = "Tabla Token Errores";
             this.tablaTokenErroresToolStripMenuItem.Click += new System.EventHandler(this.tablaTokenErroresToolStripMenuItem_Click);
             // 
@@ -150,6 +158,7 @@
             this.limpiarDocumentosRecientesToolStripMenuItem.Name = "limpiarDocumentosRecientesToolStripMenuItem";
             this.limpiarDocumentosRecientesToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
             this.limpiarDocumentosRecientesToolStripMenuItem.Text = "Limpiar documentos recientes";
+            this.limpiarDocumentosRecientesToolStripMenuItem.Click += new System.EventHandler(this.limpiarDocumentosRecientesToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -163,7 +172,7 @@
             // 
             this.acercaDeToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.acercaDeToolStripMenuItem.Text = "Acerca de..";
             this.acercaDeToolStripMenuItem.Click += new System.EventHandler(this.acercaDeToolStripMenuItem_Click);
             // 
@@ -222,14 +231,6 @@
             this.label3.Size = new System.Drawing.Size(58, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "CONSOLA";
-            // 
-            // abrirToolStripMenuItem
-            // 
-            this.abrirToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.abrirToolStripMenuItem.Text = "Abrir";
-            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
             // 
             // Form1
             // 

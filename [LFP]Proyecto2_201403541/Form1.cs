@@ -67,9 +67,8 @@ namespace _LFP_Proyecto2_201403541
         }
 
         private void generarTraduccionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Lexico scann = new Lexico();
-            scann.Scanner(richTextBox1.Text);
+        {            
+            lex.Scanner(richTextBox1.Text);
         }
 
         private void tablaTokenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -87,11 +86,21 @@ namespace _LFP_Proyecto2_201403541
             lex.Reporte2();
         }
 
+        private void limpiarDocumentosRecientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<Lista> ListaA = new List<Lista>();
+            List<Elista> ListaB = new List<Elista>();
+
+            ListaA.Clear();
+            ListaB.Clear();
+        }
+
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
                 "LFP PRACTICA\n Uzzi Libni Aarón Pineda Solórzano\n carné:201403541 \n Sección: A-",
                 "Acerca de...");
-        }        
+        }
+        
     }
 }

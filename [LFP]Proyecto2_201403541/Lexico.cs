@@ -120,7 +120,7 @@ namespace _LFP_Proyecto2_201403541
                         if (((char)39).Equals(cadena[i]))
                         { estado = 12; concatenar += cadena[i]; columna++; }
                         else
-                        { estado = 8; concatenar += cadena[i]; columna++; }
+                        { estado = 9; concatenar += cadena[i]; columna++; }
                         break;
 
                     case 10:
