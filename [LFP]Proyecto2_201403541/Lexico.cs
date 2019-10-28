@@ -13,7 +13,7 @@ namespace _LFP_Proyecto2_201403541
         List<Lista> ListaA = new List<Lista>();
         List<Elista> ListaB = new List<Elista>();
 
-        int idtkn, nutknen = 0, idtkns = 47, fila = 1, columna = 1;
+        int idtkn, nutknen = 0, idtkns = 48, fila = 1, columna = 1;
         string token = "";
         String concatenar = "", Etoken = "";
 
@@ -25,19 +25,46 @@ namespace _LFP_Proyecto2_201403541
                 switch (estado)
                 {
                     case 0:
-                        if (((char)09).Equals(cadena[i]) || ((char)32).Equals(cadena[i])) { estado = 0; } // tecla tab, espacio
-                        else if (((char)10).Equals(cadena[i])) { estado = 0; fila++; columna++; } // salto de linea
-                        else if (char.IsNumber(cadena[i])) { estado = 1; concatenar += cadena[i]; columna++; }
+                        if (((char)09).Equals(cadena[i]) || ((char)32).Equals(cadena[i]))// tecla tab, espacio
+                        {
+                            estado = 0;
+                        } 
+                        else if (((char)10).Equals(cadena[i]))// salto de linea
+                        {
+                            estado = 0; fila++; columna++;
+                        } 
+                        else if (char.IsNumber(cadena[i]))
+                        {
+                            estado = 1; concatenar += cadena[i]; columna++;
+                        }
                         else if (((char)40).Equals(cadena[i]) || ((char)41).Equals(cadena[i]) || ((char)91).Equals(cadena[i]) || ((char)93).Equals(cadena[i]) || ((char)123).Equals(cadena[i]) || ((char)125).Equals(cadena[i])) // signo "(" ")" "[" "]" "{" "}"
-                        { estado = 2; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 2; concatenar += cadena[i]; columna++;
+                        }
                         else if (((char)46).Equals(cadena[i]) || ((char)59).Equals(cadena[i]) || ((char)44).Equals(cadena[i]) || ((char)42).Equals(cadena[i]) || ((char)60).Equals(cadena[i]) || ((char)62).Equals(cadena[i]) || ((char)33).Equals(cadena[i])  || ((char)58).Equals(cadena[i])) // signo "." ";" "," "*" "<" ">" "!"  ":"
-                        { estado = 2; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 2; concatenar += cadena[i]; columna++;
+                        }
                         else if (((char)43).Equals(cadena[i]) || ((char)45).Equals(cadena[i]) || ((char)61).Equals(cadena[i])) // signo "+" "-" "=" 
-                        { estado = 2; concatenar += cadena[i]; columna++; }
-                        else if (char.IsLetter(cadena[i])) { estado = 3; concatenar += cadena[i]; columna++; }
-                        else if (((char)34).Equals(cadena[i])) { estado = 4; concatenar += cadena[i]; columna++; } // signo "
-                        else if (((char)39).Equals(cadena[i])) { estado = 5; concatenar += cadena[i]; columna++; } // signo '
-                        else if (((char)47).Equals(cadena[i])) { estado = 6; concatenar += cadena[i]; columna++; } // signo /
+                        {
+                            estado = 2; concatenar += cadena[i]; columna++;
+                        }
+                        else if (char.IsLetter(cadena[i]))
+                        {
+                            estado = 3; concatenar += cadena[i]; columna++;
+                        }
+                        else if (((char)34).Equals(cadena[i])) // signo "
+                        {
+                            estado = 4; concatenar += cadena[i]; columna++;
+                        } 
+                        else if (((char)39).Equals(cadena[i]))  // signo '
+                        {
+                            estado = 5; concatenar += cadena[i]; columna++;
+                        }
+                        else if (((char)47).Equals(cadena[i])) // signo /
+                        {
+                            estado = 6; concatenar += cadena[i]; columna++;
+                        }
                         else
                         {
                             Etoken += cadena[i];
@@ -54,7 +81,15 @@ namespace _LFP_Proyecto2_201403541
                     case 1:
                         if (((char)46).Equals(cadena[i]))
                         {
-                            estado = 7; concatenar += cadena; columna++;
+                            estado = 7; concatenar += cadena[i]; columna++;
+                        }
+                        else if (char.IsNumber(cadena[i]))
+                        {
+                            estado = 1; concatenar += cadena[i]; columna++;
+                        }
+                        else if (((char)47).Equals(cadena[i]))
+                        {
+                            estado = 2; concatenar += cadena[i]; columna++;
                         }
                         else
                         {
@@ -66,17 +101,23 @@ namespace _LFP_Proyecto2_201403541
 
                     case 2:
                         AnalizarTkn(concatenar); i--; estado = estado - 1; estado = 0;
-                        AgregarListaA(nutknen, concatenar, 2, "Numero.", fila, columna);
+                        AgregarListaA(nutknen, concatenar, idtkn, token, fila, columna);
                         nutknen++; concatenar = "";
                         break;
 
                     case 3:
                         if (char.IsLetter(cadena[i]))
-                        { estado = 3; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 3; concatenar += cadena[i]; columna++;
+                        }
                         else if (char.IsNumber(cadena[i]))
-                        { estado = 3; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 3; concatenar += cadena[i]; columna++;
+                        }
                         else if (((char)95).Equals(cadena[i]))
-                        { estado = 3; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 3; concatenar += cadena[i]; columna++;
+                        }
                         else
                         {
                             AnalizarTkn(concatenar); i--; estado = estado - 1; estado = 0;
@@ -87,52 +128,82 @@ namespace _LFP_Proyecto2_201403541
 
                     case 4:
                         if (((char)34).Equals(cadena[i]))
-                        { estado = 12; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 12; concatenar += cadena[i]; columna++;
+                        }
                         else
-                        { estado = 8; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 8; concatenar += cadena[i]; columna++;
+                        }
                         break;
 
                     case 5:
                         if (((char)39).Equals(cadena[i]))
-                        { estado = 12; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 12; concatenar += cadena[i]; columna++;
+                        }
                         else
-                        { estado = 9; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 9; concatenar += cadena[i]; columna++;
+                        }
                         break;
 
                     case 6:
                         if (((char)47).Equals(cadena[i]))
-                        { estado = 10; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 10; concatenar += cadena[i]; columna++;
+                        }
                         break;
 
                     case 7:
                         if (char.IsNumber(cadena[i]))
-                        { estado = 11; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 11; concatenar += cadena[i]; columna++;
+                        }
                         break;
 
                     case 8:
                         if (((char)34).Equals(cadena[i]))
-                        { estado = 12; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 12; concatenar += cadena[i]; columna++;
+                        }
                         else
-                        { estado = 8; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 8; concatenar += cadena[i]; columna++;
+                        }
                         break;
 
                     case 9:
                         if (((char)39).Equals(cadena[i]))
-                        { estado = 12; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 12; concatenar += cadena[i]; columna++;
+                        }
                         else
-                        { estado = 9; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 9; concatenar += cadena[i]; columna++;
+                        }
                         break;
 
                     case 10:
                         if (((char)42).Equals(cadena[i]))
-                        { estado = 13; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 13; concatenar += cadena[i]; columna++;
+                        }
                         else
-                        { estado = 14; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 14; concatenar += cadena[i]; columna++;
+                        }
                         break;
 
                     case 11:
                         if (char.IsNumber(cadena[i]))
-                        { estado = 11; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 11; concatenar += cadena[i]; columna++;
+                        }
+                        else if (((char)47).Equals(cadena[i]))
+                        {
+                            estado = 2; concatenar += cadena; columna++;
+                        }
                         else
                         {
                             AnalizarTkn(concatenar); i--; estado = estado - 1; estado = 0;
@@ -149,30 +220,44 @@ namespace _LFP_Proyecto2_201403541
 
                     case 13:
                         if (((char)10).Equals(cadena[i]))
-                        { estado = 14; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 14; concatenar += cadena[i]; columna++;
+                        }
+                        else
+                        {
+                            estado = 13; concatenar += cadena[i]; columna++;
+                        }
                         break;
 
                     case 14:
                         if (((char)42).Equals(cadena[i]))
-                        { estado = 15; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 15; concatenar += cadena[i]; columna++;
+                        }
                         else if (((char)10).Equals(cadena[i]))
-                        { estado = 14; concatenar += cadena[i]; columna++; }
-                        else
                         {
                             AnalizarTkn(concatenar); i--; estado = estado - 1; estado = 0;
                             AgregarListaA(nutknen, concatenar, idtkn, token, fila, columna);
                             nutknen++; concatenar = "";
+                        }                        
+                        else
+                        {
+                            estado = 14; concatenar += cadena[i]; columna++;
                         }
                         break;
 
                     case 15:
                         if (((char)47).Equals(cadena[i]))
-                        { estado = 16; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 16; concatenar += cadena[i]; columna++;
+                        }
                         break;
 
                     case 16:
                         if (((char)47).Equals(cadena[i]))
-                        { estado = 17; concatenar += cadena[i]; columna++; }
+                        {
+                            estado = 17; concatenar += cadena[i]; columna++;
+                        }
                         break;
 
                     case 17:
@@ -227,7 +312,7 @@ namespace _LFP_Proyecto2_201403541
                     break;
 
                 case "{":
-                    token = "Signo de corchete que abre."; idtkn = 11;
+                    token = "Signo de llave que abre."; idtkn = 11;
                     break;
 
                 case "int":
@@ -268,116 +353,115 @@ namespace _LFP_Proyecto2_201403541
 
                 case "/":
                     token = "Signo de division."; idtkn = 20;
-                    break;
-
-                case "//":
-                    token = "Signo de comentario."; idtkn = 21;
-                    break;
-
-                case "/*":
-                    token = "Signo de comentario multilinea."; idtkn = 22;
-                    break;
-
-                case "*/":
-                    token = "Signo de fin comentario multilinea."; idtkn = 23;
-                    break;
+                    break;                                
 
                 case "=":
-                    token = "Signo igual."; idtkn = 24;
+                    token = "Signo igual."; idtkn = 21;
                     break;
 
                 case "==":
-                    token = "Signo de operador."; idtkn = 25;
+                    token = "Signo de operador."; idtkn = 22;
                     break;
 
                 case ">":
-                    token = "Signo de operador."; idtkn = 26;
+                    token = "Signo de operador."; idtkn = 23;
                     break;
 
                 case "<":
-                    token = "Signo de operador."; idtkn = 27;
+                    token = "Signo de operador."; idtkn = 24;
                     break;
 
                 case "!=":
-                    token = "Signo de operador."; idtkn = 28;
+                    token = "Signo de operador."; idtkn = 25;
                     break;
 
                 case "+":
-                    token = "Signo de operador."; idtkn = 29;
+                    token = "Signo de operador."; idtkn = 26;
                     break;
 
                 case "-":
-                    token = "Signo de operador."; idtkn = 30;
+                    token = "Signo de operador."; idtkn = 27;
                     break;
 
                 case "*":
-                    token = "Signo de operador."; idtkn = 31;
+                    token = "Signo de operador."; idtkn = 28;
                     break;
 
                 case "Console":
-                    token = "Palabra Reservada."; idtkn = 32;
+                    token = "Palabra Reservada."; idtkn = 29;
                     break;
 
                 case "Write":
-                    token = "Palabra Reservada."; idtkn = 33;
+                    token = "Palabra Reservada."; idtkn = 30;
                     break;
 
                 case "int[]":
-                    token = "Arreglo tipo int."; idtkn = 34;
+                    token = "Arreglo tipo int."; idtkn = 31;
                     break;                                    
 
                 case "char[]":
-                    token = "Arreglo tipo char."; idtkn = 35;
+                    token = "Arreglo tipo char."; idtkn = 32;
+                    break;
+
+                case "[":
+                    token = "Signos de corchetes que abre."; idtkn = 33;
                     break;
 
                 case "new":
-                    token = "Palabra Reservada."; idtkn = 36;
+                    token = "Palabra Reservada."; idtkn = 34;
                     break;
 
                 case "if":
-                    token = "Ciclo if."; idtkn = 37;
+                    token = "Ciclo if."; idtkn = 35;
                     break;
 
                 case "else":
-                    token = "Ciclo if."; idtkn = 38;
+                    token = "Ciclo if."; idtkn = 36;
                     break;
 
                 case "switch":
-                    token = "Sentencia Switch."; idtkn = 39;
+                    token = "Sentencia Switch."; idtkn = 37;
                     break;
 
                 case "case":
-                    token = "Sentencia Switch."; idtkn = 40;
+                    token = "Sentencia Switch."; idtkn = 38;
                     break;
 
                 case "break":
-                    token = "Sentencia Switch."; idtkn = 41;
+                    token = "Sentencia Switch."; idtkn = 39;
                     break;
 
                 case "default":
-                    token = "Sentecia Switch."; idtkn = 42;
+                    token = "Sentecia Switch."; idtkn = 40;
                     break;
 
                 case ":":
-                    token = "Signo dos puntos."; idtkn = 43;
+                    token = "Signo dos puntos."; idtkn = 41;
                     break;
 
                 case "for":
-                    token = "Ciclo for."; idtkn = 44;
+                    token = "Ciclo for."; idtkn = 42;
                     break;
 
                 case "<=":
-                    token = "Operador."; idtkn = 45;
+                    token = "Operador."; idtkn = 43;
                     break;
 
                 case ">=":
-                    token = "Operador."; idtkn = 46;
+                    token = "Operador."; idtkn = 44;
                     break;
 
                 case "while":
-                    token = "Ciclo while."; idtkn = 47;
+                    token = "Ciclo while."; idtkn = 45;
                     break;
-                
+
+                case "}":
+                    token = "Signo llave que cierra"; idtkn = 46;
+                    break;
+
+                case "]":
+                    token = "Signo corchete que cierra."; idtkn = 47;
+                    break;
                 default:
                     token = "Cadena"; idtkns++; idtkn = idtkns;
                     break;
