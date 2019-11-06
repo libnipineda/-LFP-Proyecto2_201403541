@@ -13,7 +13,7 @@ namespace _LFP_Proyecto2_201403541
         List<Lista> ListaA = new List<Lista>();
         List<Elista> ListaB = new List<Elista>();
 
-        int idtkn, nutknen = 0, idtkns = 48, fila = 1, columna = 1;
+        int idtkn, nutknen = 0, idtkns = 46, fila = 1, columna = 1;
         string token = "";
         String concatenar = "", Etoken = "";
 
@@ -86,11 +86,7 @@ namespace _LFP_Proyecto2_201403541
                         else if (char.IsNumber(cadena[i]))
                         {
                             estado = 1; concatenar += cadena[i]; columna++;
-                        }
-                        else if (((char)47).Equals(cadena[i]))
-                        {
-                            estado = 2; concatenar += cadena[i]; columna++;
-                        }
+                        }                        
                         else
                         {
                             AnalizarTkn(concatenar); i--; estado = estado - 1; estado = 0;
@@ -153,6 +149,12 @@ namespace _LFP_Proyecto2_201403541
                         {
                             estado = 10; concatenar += cadena[i]; columna++;
                         }
+                        else
+                        {
+                            AnalizarTkn(concatenar); i--; estado = estado - 1; estado = 0;
+                            AgregarListaA(nutknen, concatenar, idtkn, token, fila, columna);
+                            nutknen++; concatenar = "";
+                        }
                         break;
 
                     case 7:
@@ -199,11 +201,7 @@ namespace _LFP_Proyecto2_201403541
                         if (char.IsNumber(cadena[i]))
                         {
                             estado = 11; concatenar += cadena[i]; columna++;
-                        }
-                        else if (((char)47).Equals(cadena[i]))
-                        {
-                            estado = 2; concatenar += cadena; columna++;
-                        }
+                        }                        
                         else
                         {
                             AnalizarTkn(concatenar); i--; estado = estado - 1; estado = 0;
@@ -279,40 +277,40 @@ namespace _LFP_Proyecto2_201403541
                     token = "Palabra Reservada."; idtkn = 1;
                     break;
 
-                case "":
+                case "static":
                     token = "Palabra Reservada."; idtkn = 3;
                     break;
 
-                case "static":
+                case "void":
                     token = "Palabra Reservada."; idtkn = 4;
                     break;
 
-                case "void":
+                case "Main":
                     token = "Palabra Reservada."; idtkn = 5;
                     break;
 
-                case "Main":
-                    token = "Palabra Reservada."; idtkn = 6;
-                    break;
-
                 case "(":
-                    token = "Signo de parentesis abierto."; idtkn = 7;
+                    token = "Signo de parentesis abierto."; idtkn = 6;
                     break;
 
                 case "string[]":
-                    token = "Palabra Reservada."; idtkn = 8;
+                    token = "Palabra Reservada o declaracion de un arrego de string."; idtkn = 7;
                     break;
 
                 case "args":
-                    token = "Palabra Reservada."; idtkn = 9;
+                    token = "Palabra Reservada."; idtkn = 8;
                     break;
 
                 case ")":
-                    token = "Signo de parentesis que cierra.";  idtkn = 10;
+                    token = "Signo de parentesis que cierra."; idtkn = 9;
                     break;
 
                 case "{":
-                    token = "Signo de llave que abre."; idtkn = 11;
+                    token = "Signo de llave que abre."; idtkn = 10;
+                    break;
+
+                case "}":
+                    token = "Signo llave que cierra"; idtkn = 11;
                     break;
 
                 case "int":
@@ -335,6 +333,10 @@ namespace _LFP_Proyecto2_201403541
                     token = "Palabra Reservada, se utiliza en  variables tipo cadena."; idtkn = 16;
                     break;
 
+                case "String":
+                    token = "Palabra Reservada, se utiliza en  variables tipo cadena."; idtkn = 16;
+                    break;
+
                 case ",":
                     token = "Signo de coma."; idtkn = 17;
                     break;
@@ -347,13 +349,9 @@ namespace _LFP_Proyecto2_201403541
                     token = "Signo de punto y coma."; idtkn = 19;
                     break;
 
-                case "String":
-                    token = "Palabra Reservada."; idtkn = 16;
-                    break;
-
                 case "/":
                     token = "Signo de division."; idtkn = 20;
-                    break;                                
+                    break;
 
                 case "=":
                     token = "Signo igual."; idtkn = 21;
@@ -395,73 +393,70 @@ namespace _LFP_Proyecto2_201403541
                     token = "Palabra Reservada."; idtkn = 30;
                     break;
 
-                case "int[]":
-                    token = "Arreglo tipo int."; idtkn = 31;
-                    break;                                    
-
-                case "char[]":
-                    token = "Arreglo tipo char."; idtkn = 32;
-                    break;
-
                 case "[":
-                    token = "Signos de corchetes que abre."; idtkn = 33;
-                    break;
-
-                case "new":
-                    token = "Palabra Reservada."; idtkn = 34;
-                    break;
-
-                case "if":
-                    token = "Ciclo if."; idtkn = 35;
-                    break;
-
-                case "else":
-                    token = "Ciclo if."; idtkn = 36;
-                    break;
-
-                case "switch":
-                    token = "Sentencia Switch."; idtkn = 37;
-                    break;
-
-                case "case":
-                    token = "Sentencia Switch."; idtkn = 38;
-                    break;
-
-                case "break":
-                    token = "Sentencia Switch."; idtkn = 39;
-                    break;
-
-                case "default":
-                    token = "Sentecia Switch."; idtkn = 40;
-                    break;
-
-                case ":":
-                    token = "Signo dos puntos."; idtkn = 41;
-                    break;
-
-                case "for":
-                    token = "Ciclo for."; idtkn = 42;
-                    break;
-
-                case "<=":
-                    token = "Operador."; idtkn = 43;
-                    break;
-
-                case ">=":
-                    token = "Operador."; idtkn = 44;
-                    break;
-
-                case "while":
-                    token = "Ciclo while."; idtkn = 45;
-                    break;
-
-                case "}":
-                    token = "Signo llave que cierra"; idtkn = 46;
+                    token = "Signos de corchetes que abre."; idtkn = 31;
                     break;
 
                 case "]":
-                    token = "Signo corchete que cierra."; idtkn = 47;
+                    token = "Signo corchete que cierra."; idtkn = 32;
                     break;
+
+                case "new":
+                    token = "Palabra Reservada."; idtkn = 33;
+                    break;
+
+                case "if":
+                    token = "Ciclo if."; idtkn = 34;
+                    break;
+
+                case "else":
+                    token = "Ciclo if."; idtkn = 35;
+                    break;
+
+                case "switch":
+                    token = "Sentencia Switch."; idtkn = 36;
+                    break;
+
+                case "case":
+                    token = "Sentencia Switch."; idtkn = 37;
+                    break;
+
+                case "break":
+                    token = "Sentencia Switch."; idtkn = 38;
+                    break;
+
+                case "default":
+                    token = "Sentecia Switch."; idtkn = 39;
+                    break;
+
+                case ":":
+                    token = "Signo dos puntos."; idtkn = 40;
+                    break;
+
+                case "for":
+                    token = "Ciclo for."; idtkn = 41;
+                    break;
+
+                case "<=":
+                    token = "Operador."; idtkn = 42;
+                    break;
+
+                case ">=":
+                    token = "Operador."; idtkn = 43;
+                    break;
+
+                case "while":
+                    token = "Ciclo while."; idtkn = 44;
+                    break;
+
+                case "true":
+                    token = "Palabra Reservada."; idtkn = 45;
+                    break;
+
+                case "false":
+                    token = "Palabra Reservada."; idtkn = 46;
+                    break;
+
                 default:
                     token = "Cadena"; idtkns++; idtkn = idtkns;
                     break;

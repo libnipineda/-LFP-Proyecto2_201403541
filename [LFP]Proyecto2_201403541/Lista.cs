@@ -42,4 +42,13 @@ namespace _LFP_Proyecto2_201403541
         public int Efila = 0;
         public int Ecolumna = 0;
     }
+
+    class Parser
+    {
+        public int num = 0;
+        public int fila = 0;
+        public string tkn = "";
+        public string lex = "";
+        public string obtuvo = "";
+    }
 }
