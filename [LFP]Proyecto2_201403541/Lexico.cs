@@ -502,6 +502,11 @@ namespace _LFP_Proyecto2_201403541
             {
                 MessageBox.Show("No se encontro errores.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            }
+        }
+
+        public List<Lista> getToken()
+        {
+            return this.ListaA;
         }
     }
+}

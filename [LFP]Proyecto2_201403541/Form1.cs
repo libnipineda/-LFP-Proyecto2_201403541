@@ -19,6 +19,7 @@ namespace _LFP_Proyecto2_201403541
         }
 
         Lexico lex = new Lexico();
+        Sintactico sin = new Sintactico();        
 
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -69,11 +70,15 @@ namespace _LFP_Proyecto2_201403541
         private void generarTraduccionToolStripMenuItem_Click(object sender, EventArgs e)
         {            
             lex.Scanner(richTextBox1.Text);
+            sin.Parsear(lex.getToken());
+            //LinkedList<Lista> listas = new LinkedList<Lista>();
+            //listas.AddLast(new Lista(0, "ultimo", 0, "Ultimo Valor", 0, 0));
+            //sin.Parsear(listas);
         }
 
         private void tablaTokenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            lex.Reporte1();   
+            lex.Reporte1();            
         }
 
         private void tablaSímbolosToolStripMenuItem_Click(object sender, EventArgs e)
