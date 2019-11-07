@@ -13,7 +13,7 @@ namespace _LFP_Proyecto2_201403541
         List<Lista> ListaA = new List<Lista>();
         List<Elista> ListaB = new List<Elista>();
 
-        int idtkn, nutknen = 0, idtkns = 46, fila = 1, columna = 1;
+        int idtkn, nutknen = 0, fila = 1, columna = 1;
         string token = "";
         String concatenar = "", Etoken = "";
 
@@ -291,174 +291,170 @@ namespace _LFP_Proyecto2_201403541
 
                 case "(":
                     token = "Signo de parentesis abierto."; idtkn = 6;
-                    break;
-
-                case "string[]":
-                    token = "Palabra Reservada o declaracion de un arrego de string."; idtkn = 7;
-                    break;
+                    break;               
 
                 case "args":
-                    token = "Palabra Reservada."; idtkn = 8;
+                    token = "Palabra Reservada."; idtkn = 7;
                     break;
 
                 case ")":
-                    token = "Signo de parentesis que cierra."; idtkn = 9;
+                    token = "Signo de parentesis que cierra."; idtkn = 8;
                     break;
 
                 case "{":
-                    token = "Signo de llave que abre."; idtkn = 10;
+                    token = "Signo de llave que abre."; idtkn = 9;
                     break;
 
                 case "}":
-                    token = "Signo llave que cierra"; idtkn = 11;
+                    token = "Signo llave que cierra"; idtkn = 10;
                     break;
 
                 case "int":
-                    token = "Palabra Reservada, se utiliza para declara numeros enteros."; idtkn = 12;
+                    token = "Palabra Reservada, se utiliza para declara numeros enteros."; idtkn = 11;
                     break;
 
                 case "float":
-                    token = "Palabra Reservada, se utiliza para declara numeros con decimal."; idtkn = 13;
+                    token = "Palabra Reservada, se utiliza para declara numeros con decimal."; idtkn = 12;
                     break;
 
                 case "bool":
-                    token = "Palabra Reservada, se utiliza en variables boolenas."; idtkn = 14;
+                    token = "Palabra Reservada, se utiliza en variables boolenas."; idtkn = 13;
                     break;
 
                 case "char":
-                    token = "Palabra Reservada, se utiliza en variables tipo caracter."; idtkn = 15;
+                    token = "Palabra Reservada, se utiliza en variables tipo caracter."; idtkn = 14;
                     break;
 
                 case "string":
-                    token = "Palabra Reservada, se utiliza en  variables tipo cadena."; idtkn = 16;
+                    token = "Palabra Reservada, se utiliza en  variables tipo cadena."; idtkn = 15;
                     break;
 
                 case "String":
-                    token = "Palabra Reservada, se utiliza en  variables tipo cadena."; idtkn = 16;
+                    token = "Palabra Reservada, se utiliza en  variables tipo cadena."; idtkn = 15;
                     break;
 
                 case ",":
-                    token = "Signo de coma."; idtkn = 17;
+                    token = "Signo de coma."; idtkn = 16;
                     break;
 
                 case ".":
-                    token = "Signo de punto."; idtkn = 18;
+                    token = "Signo de punto."; idtkn = 17;
                     break;
 
                 case ";":
-                    token = "Signo de punto y coma."; idtkn = 19;
+                    token = "Signo de punto y coma."; idtkn = 18;
                     break;
 
                 case "/":
-                    token = "Signo de division."; idtkn = 20;
+                    token = "Signo de division."; idtkn = 19;
                     break;
 
                 case "=":
-                    token = "Signo igual."; idtkn = 21;
+                    token = "Signo igual."; idtkn = 20;
                     break;
 
                 case "==":
-                    token = "Signo de operador."; idtkn = 22;
+                    token = "Signo de operador."; idtkn = 21;
                     break;
 
                 case ">":
-                    token = "Signo de operador."; idtkn = 23;
+                    token = "Signo de operador."; idtkn = 22;
                     break;
 
                 case "<":
-                    token = "Signo de operador."; idtkn = 24;
+                    token = "Signo de operador."; idtkn = 23;
                     break;
 
                 case "!=":
-                    token = "Signo de operador."; idtkn = 25;
+                    token = "Signo de operador."; idtkn = 24;
                     break;
 
                 case "+":
-                    token = "Signo de operador."; idtkn = 26;
+                    token = "Signo de operador."; idtkn = 25;
                     break;
 
                 case "-":
-                    token = "Signo de operador."; idtkn = 27;
+                    token = "Signo de operador."; idtkn = 26;
                     break;
 
                 case "*":
-                    token = "Signo de operador."; idtkn = 28;
+                    token = "Signo de operador."; idtkn = 27;
                     break;
 
                 case "Console":
-                    token = "Palabra Reservada."; idtkn = 29;
+                    token = "Palabra Reservada."; idtkn = 28;
                     break;
 
                 case "Write":
-                    token = "Palabra Reservada."; idtkn = 30;
+                    token = "Palabra Reservada."; idtkn = 29;
                     break;
 
                 case "[":
-                    token = "Signos de corchetes que abre."; idtkn = 31;
+                    token = "Signos de corchetes que abre."; idtkn = 30;
                     break;
 
                 case "]":
-                    token = "Signo corchete que cierra."; idtkn = 32;
+                    token = "Signo corchete que cierra."; idtkn = 31;
                     break;
 
                 case "new":
-                    token = "Palabra Reservada."; idtkn = 33;
+                    token = "Palabra Reservada."; idtkn = 32;
                     break;
 
                 case "if":
-                    token = "Ciclo if."; idtkn = 34;
+                    token = "Ciclo if."; idtkn = 33;
                     break;
 
                 case "else":
-                    token = "Ciclo if."; idtkn = 35;
+                    token = "Ciclo if."; idtkn = 34;
                     break;
 
                 case "switch":
-                    token = "Sentencia Switch."; idtkn = 36;
+                    token = "Sentencia Switch."; idtkn = 35;
                     break;
 
                 case "case":
-                    token = "Sentencia Switch."; idtkn = 37;
+                    token = "Sentencia Switch."; idtkn = 36;
                     break;
 
                 case "break":
-                    token = "Sentencia Switch."; idtkn = 38;
+                    token = "Sentencia Switch."; idtkn = 37;
                     break;
 
                 case "default":
-                    token = "Sentecia Switch."; idtkn = 39;
+                    token = "Sentecia Switch."; idtkn = 38;
                     break;
 
                 case ":":
-                    token = "Signo dos puntos."; idtkn = 40;
+                    token = "Signo dos puntos."; idtkn = 39;
                     break;
 
                 case "for":
-                    token = "Ciclo for."; idtkn = 41;
+                    token = "Ciclo for."; idtkn = 40;
                     break;
 
                 case "<=":
-                    token = "Operador."; idtkn = 42;
+                    token = "Operador."; idtkn = 41;
                     break;
 
                 case ">=":
-                    token = "Operador."; idtkn = 43;
+                    token = "Operador."; idtkn = 42;
                     break;
 
                 case "while":
-                    token = "Ciclo while."; idtkn = 44;
+                    token = "Ciclo while."; idtkn = 43;
                     break;
 
                 case "true":
-                    token = "Palabra Reservada."; idtkn = 45;
+                    token = "Palabra Reservada."; idtkn = 44;
                     break;
 
                 case "false":
-                    token = "Palabra Reservada."; idtkn = 46;
+                    token = "Palabra Reservada."; idtkn = 45;
                     break;
 
                 default:
-                    token = "Cadena"; idtkns++; idtkn = idtkns;
+                    token = "Cadena"; idtkn = 46;
                     break;
             }
         }

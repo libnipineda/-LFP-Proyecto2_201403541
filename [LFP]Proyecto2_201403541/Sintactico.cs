@@ -10,10 +10,10 @@ namespace _LFP_Proyecto2_201403541
     class Sintactico
     {
         /* correlativo y lexema:
-         * 1  -> class, 2  -> numero, 3  -> static, 4  -> void, 5  -> Main, 6  -> (, 7  -> string[], 8  ->  args, 9  -> ), 10 -> {, 11 -> }, 12 -> int, 13 -> float
-           14 -> bool, 15 -> char, 16 -> string o String, 17 -> ,, 18 -> -, 19 -> ;, 20 -> /, 21 -> =, 22 -> ==, 23 -> >, 24 -> <, 25 -> !=, 26 -> +, 27 -> -
-           28 -> *, 29 -> Console, 30 -> Write , 31 -> [, 32 -> ], 33 -> new, 34 -> if, 35 -> else, 36 -> switch, 37 -> case, 38 -> break, 39 -> default
-           40 -> :, 41 -> for, 42 -> <=, 43 -> >=, 44 -> while, 45 -> true, 46 -> false
+         * 1  -> class, 2  -> numero, 3  -> static, 4  -> void, 5  -> Main, 6  -> (, 7  ->  args, 8  -> ), 9 -> {, 10 -> }, 11 -> int, 12 -> float
+           13 -> bool, 14 -> char, 15 -> string o String, 16 -> ,, 17 -> -, 18 -> ;, 19 -> /, 20 -> =, 21 -> ==, 22 -> >, 23 -> <, 24 -> !=, 25 -> +, 26 -> -
+           27 -> *, 28 -> Console, 29 -> Write , 30 -> [, 31 -> ], 32 -> new, 33 -> if, 34 -> else, 35 -> switch, 36 -> case, 37 -> break, 38 -> default
+           39 -> :, 40 -> for, 41 -> <=, 42 -> >=, 43 -> while, 44 -> true, 45 -> false, 46 -> cadena
          */
 
         // variables
@@ -49,10 +49,10 @@ namespace _LFP_Proyecto2_201403541
             {
                 MessageBox.Show("Produccion <INICIO>.","Información");
                 Parea(1);
-                Parea(47);
-                Parea(10);
+                Parea(46);
+                Parea(9);
                 Estructura();
-                Parea(11);
+                Parea(10);
             }
             catch (Exception)
             {
@@ -62,7 +62,93 @@ namespace _LFP_Proyecto2_201403541
 
         public void Estructura()
         {
-            MessageBox.Show("Produccion <ESTRUCTURA>", "Información");
+            try
+            {
+                MessageBox.Show("Produccion <ESTRUCTURA>", "Información");
+                Parea(3);
+                Parea(4);
+                Parea(5);
+                Parea(6);
+                Parea(15);
+                Parea(30);
+                Parea(31);
+                Parea(7);
+                Parea(8);
+                Parea(9);
+                Instruccion();
+                Parea(10);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error en la produccion <ESTRUCTURA>", "Advertencia");
+            }            
+        }
+
+        public void Instruccion()
+        {
+            try
+            {
+                MessageBox.Show("Produccion <INSTRUCCION>", "Información");
+                Variable(); Instruccion();
+                Arreglo(); Instruccion();
+                Graficar_V(); Instruccion();
+                Expresion_A(); Instruccion();
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error en la produccion <INSTRUCCION>", "Advertencia");
+            }
+        }
+
+        public void Variable()
+        {
+
+        }
+
+        public void Arreglo()
+        {
+
+        }
+
+        public void Graficar_V()
+        {
+
+        }
+
+        public void Expresion_A()
+        {
+
+        }
+
+        public void Operadores_R()
+        {
+
+        }
+
+        public void Imprimir()
+        {
+
+        }
+
+        public void If()
+        {
+
+        }
+
+        public void For()
+        {
+
+        }
+
+        public void Switch()
+        {
+
+        }
+
+        public void While()
+        {
+
         }
 
         //public void Parea(int valor)
