@@ -13,7 +13,7 @@ namespace _LFP_Proyecto2_201403541
          * 1  -> class, 2  -> numero, 3  -> static, 4  -> void, 5  -> Main, 6  -> (, 7  ->  args, 8  -> ), 9 -> {, 10 -> }, 11 -> int, 12 -> float
            13 -> bool, 14 -> char, 15 -> string o String, 16 -> ,, 17 -> -, 18 -> ;, 19 -> /, 20 -> =, 21 -> ==, 22 -> >, 23 -> <, 24 -> !=, 25 -> +, 26 -> -
            27 -> *, 28 -> Console, 29 -> Write , 30 -> [, 31 -> ], 32 -> new, 33 -> if, 34 -> else, 35 -> switch, 36 -> case, 37 -> break, 38 -> default
-           39 -> :, 40 -> for, 41 -> <=, 42 -> >=, 43 -> while, 44 -> true, 45 -> false, 46 -> cadena
+           39 -> :, 40 -> for, 41 -> <=, 42 -> >=, 43 -> while, 44 -> true, 45 -> false, 46 -> cadena, 0 -> Ultimo token
          */
 
         // variables
@@ -57,6 +57,7 @@ namespace _LFP_Proyecto2_201403541
             catch (Exception)
             {
                 MessageBox.Show("Error en la produccion <INICIO>", "Advertencia");
+                Parea(0);
             }
         }
 
@@ -81,74 +82,199 @@ namespace _LFP_Proyecto2_201403541
             catch (Exception)
             {
                 MessageBox.Show("Error en la produccion <ESTRUCTURA>", "Advertencia");
+                Parea(0);
             }            
         }
 
         public void Instruccion()
-        {
+        { 
             try
             {
                 MessageBox.Show("Produccion <INSTRUCCION>", "Información");
-                Variable(); Instruccion();
-                Arreglo(); Instruccion();
+                if (TokenActual.Idtkn.Equals(11) || TokenActual.Idtkn.Equals(12) || TokenActual.Idtkn.Equals(13) || TokenActual.Idtkn.Equals(14) || TokenActual.Idtkn.Equals(15))
+                {
+                    Declaracion(); Instruccion();
+                }                                
                 Graficar_V(); Instruccion();
                 Expresion_A(); Instruccion();
-
+                Operadores_R(); Instruccion();
+                Imprimir(); Instruccion();
+                If(); Instruccion();
+                For(); Instruccion();
+                Switch(); Instruccion();
+                While(); Instruccion();
             }
             catch (Exception)
             {
                 MessageBox.Show("Error en la produccion <INSTRUCCION>", "Advertencia");
+                Parea(0);
+            }
+        }
+
+        public void Declaracion()
+        {
+            try
+            {
+                MessageBox.Show("Produccion <DECLARACION>", "Información");
+                Tipo();
+                DP();                
+            }
+            catch (Exception e)
+            {
+                Parea(0);
+            }
+        }
+
+        public void Tipo()
+        {
+            try
+            {
+                MessageBox.Show("Produccion <TIPO>", "Información");
+                if (TokenActual.Idtkn.Equals(11))
+                {
+                    Parea(11);
+                }
+                else if (TokenActual.Idtkn.Equals(12))
+                {
+                    Parea(12);
+                }
+                else if (TokenActual.Idtkn.Equals(13))
+                {
+                    Parea(13);
+                }
+                else if (TokenActual.Idtkn.Equals(14))
+                {
+                    Parea(14);
+                }
+                else
+                {
+                    Parea(15);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error en la produccion <TIPO>", "Advertencia");                
             }
         }
 
         public void Variable()
         {
+            try
+            {
 
+            }
+            catch (Exception e)
+            {
+                Parea(0);
+            }
         }
 
         public void Arreglo()
         {
+            try
+            {
 
+            }
+            catch (Exception e)
+            {
+                Parea(0);
+            }
         }
 
         public void Graficar_V()
         {
+            try
+            {
 
+            }
+            catch (Exception e)
+            {
+                Parea(0);
+            }
         }
 
         public void Expresion_A()
         {
+            try
+            {
 
+            }
+            catch (Exception e)
+            {
+                Parea(0);
+            }
         }
 
         public void Operadores_R()
         {
+            try
+            {
 
+            }
+            catch (Exception e)
+            {
+                Parea(0);
+            }
         }
 
         public void Imprimir()
         {
+            try
+            {
 
+            }
+            catch (Exception e)
+            {
+                Parea(0);
+            }
         }
 
         public void If()
         {
+            try
+            {
 
+            }
+            catch (Exception e)
+            {
+                Parea(0);
+            }
         }
 
         public void For()
         {
+            try
+            {
 
+            }
+            catch (Exception e)
+            {
+                Parea(0);
+            }
         }
 
         public void Switch()
         {
+            try
+            {
 
+            }
+            catch (Exception e)
+            {
+                Parea(0);
+            }
         }
 
         public void While()
         {
+            try
+            {
 
+            }
+            catch (Exception e)
+            {
+                Parea(0);
+            }
         }
 
         //public void Parea(int valor)
