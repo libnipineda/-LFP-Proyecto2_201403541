@@ -1,0 +1,50 @@
+VERSION 1.0 DE GRAMATICA PROYECTO 2 TRADUCTOR DE C# A PYTHON
+------------------------------------------------------------
+<INICIO> := class cadena {<ESTRUCTURA>}
+<ESTRUCTURA> := static void Main(string[] args){<INSTRUCCION>}
+<INSTRUCCION> := <DECLARACION> <INSTRUCCION>
+              | <GRAFICAR_V> <INSTRUCCION>              
+              | <EXPRESION_A> <INSTRUCCION>
+              | <OPERADORES_R> <INSTRUCCION>
+              | <IMPRIMIR> <INSTRUCCION>
+              | <IF> <INSTRUCCION>
+              | <FOR> <INSTRUCCION>
+              | <SWITCH> <INSTRUCCION>
+              | <WHILE> <INSTRUCCION>
+              | EPSILON
+<DECLARACION> := <TIPO> <DP>
+<DP> := [] cadena = <AP>
+      | cadena <DS>
+<DS> := <VP>
+      | = cadena;
+<VP> := , <TIPO> cadena <VP>
+      | = <VS> <VP>
+      | ;
+<VS> := num <VP>
+      | cadena <VP>
+      | decimal <VP>
+      | false <VP>
+      | true <VP>
+<AP> := {<ARGUMENTO><ARGUMENTOS>};
+      | new <TIPO>[];
+<ARGUMENTO> := num
+             | decimal
+             | cadena
+<ARGUMENTOS> := ,<ARGUMENTO>
+              | EPSILON
+<TIPO> := int
+        | float
+        | char
+        | string
+        | String
+        | bool
+<GRAFICAR_V> := graficarVector(cadena,cadena);
+<EXPRESION_A> := <E>
+<E> := <F><EP>
+<EP> := +<F><EP>
+      | -<F><EP>
+      | *<F><EP>
+      | /<F><EP>
+<F> := cadena
+     | num
+     | decimal
