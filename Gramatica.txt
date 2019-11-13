@@ -1,0 +1,67 @@
+----------------------------- BLOQUE PRINCIPAL -----------------------------
+<INICIO> := class cadena {<ESTRUCTURA>}
+<ESTRUCTURA> := static void Main(string[] args){<INSTRUCCION>}
+--------------------------------------------------------------
+
+----------------------------- BLOQUE DECLARACION VARIABLE -----------------------------
+<DECLARACION> := <TIPO> <LISTA_VAR>
+<TIPO> := int
+        | float
+        | char
+        | string
+        | String
+        | bool
+<LISTA_VAR> := [] cadena = <VALOR_ARREGLO> <LISTA_VAR>
+             | cadena <VALOR_ASIGNACION> <LISTA_VAR>
+             | epsilon
+<VALOR_ARREGLO> := new <TIPO>[];
+                 | {<TIPO_VAR><ARGUMENTO>};
+<VALOR_ASIGNACION> := , <OTROS> <VALOR_ASIGNACION>
+                    | = <TIPO_VAR> <VALOR_ASIGNACION>
+                    | ; <VALOR_ASIGNACION>
+                    | epsilon
+<OTROS> := <TIPO> cadena
+         | cadena
+<TIPO_VAR> := num
+            | cadena
+            | decimal
+            | false
+            | true
+<ARGUMENTO> := , <TIPO_VAR> <ARGUMENTO>
+             | epsilon
+--------------------------------------------------------------
+
+----------------------------- IF -----------------------------
+<IF> := if(<A>){<B>}<IFP>
+<IFP> := else<INST_IF>
+<INST_IF> := {<B>}
+           | <IF>
+--------------------------------------------------------------
+
+----------------------------- FOR -----------------------------
+<FOR> := for(<TIPO> cadena = <VALORES>; cadena <LISTA_FOR> <ARGUEMNTO_FOR>; <INCREMENTO>){<INSTRUCCION>}
+<LISTA_FOr> := <
+            | >
+            | <=
+            | >=
+            | !=
+<ARGUEMNTO_FOR> := cadena
+                 | num
+<INCREMENTO> := cadena<INP>
+<INP> := ++
+       | --
+--------------------------------------------------------------
+
+----------------------------- WHILE -----------------------------
+<WHILE> := while(<CONDICION>){<INSTRUCCION>}
+<CONDICION> := <OPERADORES_R>
+--------------------------------------------------------------
+
+----------------------------- SWITCH -----------------------------
+<SWITCH> := switch(cadena){<ESTRUCTURA_SWITCH>}
+<ESTRUCTURA_SWITCH> := case <TIPO_CASE> : <INSTRUCCION> break; <EST_SWITP>
+<TIPO_CASE> := cadena
+             | num
+<EST_SWITP> := <ESTRUCTURA_SWITCH>
+             | default : <INSTRUCCION> break;
+--------------------------------------------------------------
