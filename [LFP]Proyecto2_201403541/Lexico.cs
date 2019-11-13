@@ -385,7 +385,7 @@ namespace _LFP_Proyecto2_201403541
                     token = "Palabra Reservada."; idtkn = 28;
                     break;
 
-                case "Write":
+                case "WriteLine":
                     token = "Palabra Reservada."; idtkn = 29;
                     break;
 

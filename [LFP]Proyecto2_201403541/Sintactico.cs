@@ -76,7 +76,7 @@ namespace _LFP_Proyecto2_201403541
                 Parea(7);//args
                 Parea(8);//)
                 Parea(9);//{
-                //Instruccion();
+                Instruccion();
                 Parea(10);//}
             }
             catch (Exception)
@@ -86,14 +86,22 @@ namespace _LFP_Proyecto2_201403541
             }
         }
 
-        public void Introduccion()
+        public void Instruccion()
         {
             try
             {
                 MessageBox.Show("Produccion <INTRODUCCION>", "Informacion.");
                 if (TokenActual.Idtkn.Equals(11) || TokenActual.Idtkn.Equals(12) || TokenActual.Idtkn.Equals(13) || TokenActual.Idtkn.Equals(14) || TokenActual.Idtkn.Equals(15))
                 {
-                    Declaracion(); Introduccion();
+                    Declaracion(); Instruccion();
+                }
+                else if (TokenActual.Idtkn.Equals(47) || TokenActual.Idtkn.Equals(28))
+                {
+                    Imprimir(); Instruccion();
+                }
+                else
+                {
+                    // sale de la producción.
                 }
             }
             catch (Exception)
@@ -253,12 +261,168 @@ namespace _LFP_Proyecto2_201403541
             try
             {
                 MessageBox.Show("Producción <OTROS>","Información.");
-
+                if (TokenActual.Idtkn.Equals(11) || TokenActual.Idtkn.Equals(12) || TokenActual.Idtkn.Equals(13) || TokenActual.Idtkn.Equals(14) || TokenActual.Idtkn.Equals(15))
+                {
+                    Tipo();
+                    Parea(46);//cadena
+                }
+                else if (TokenActual.Idtkn.Equals(2) || TokenActual.Idtkn.Equals(46) || TokenActual.Idtkn.Equals(48) || TokenActual.Idtkn.Equals(44) || TokenActual.Idtkn.Equals(45))
+                {
+                    TipoVar();
+                }
             }
             catch (Exception)
             {
                 Parea(0);
                 MessageBox.Show("Error producción <OTROS>","Advertencia.");
+            }
+        }
+
+        public void TipoVar()
+        {
+            try
+            {
+                MessageBox.Show("Producción <TIPO_VAR>","Información.");
+                if (TokenActual.Idtkn.Equals(2))
+                {
+                    Parea(2);//numero
+                }
+                else if (TokenActual.Idtkn.Equals(46))
+                {
+                    Parea(46);//cadena
+                }
+                else if (TokenActual.Idtkn.Equals(48))
+                {
+                    Parea(48);//decimal
+                }
+                else if (TokenActual.Idtkn.Equals(44))
+                {
+                    Parea(44);//true
+                }
+                else if (TokenActual.Idtkn.Equals(45))
+                {
+                    Parea(45);//false
+                }
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la producción <TIPO_VAR>","Advertencia.");
+            }
+        }
+
+        public void Argumento()
+        {
+            try
+            {
+                MessageBox.Show("Producción <ARGUMENTO>","Información");
+                if (TokenActual.Idtkn.Equals(16))
+                {
+                    Parea(16);//,
+                    TipoVar();
+                    Argumento();
+                }
+                else
+                {
+                    //sale de la producción.
+                }
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la producción <ARGUMENTO>","Advertencia.");
+            }
+        }
+
+        public void Imprimir()
+        {
+            try
+            {
+                MessageBox.Show("Producción <IMPRIMIR>","Información.");
+                if (TokenActual.Idtkn.Equals(47))
+                {
+                    GraficarV();
+                }
+                else if (TokenActual.Idtkn.Equals(28))
+                {
+                    Parea(28);//Console
+                    Parea(17);//.
+                    Parea(29);//WriteLine
+                    Parea(6);//(
+                    ListadoImprimir();
+                    Parea(8);//)
+                    Parea(18);//;
+                }
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la producción <IMPRIMIR>","Advertencia.");
+            }
+        }
+
+        public void GraficarV()
+        {
+            try
+            {
+                MessageBox.Show("Producción <GRAFICAR_V>","Información.");
+                Parea(47);//graficarVector
+                Parea(6);//(
+                Parea(46);//cadena
+                Parea(16);//,
+                Parea(46);//cadena
+                Parea(8);//)
+                Parea(18);//;
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la producción <GRAFICAR_V>","Advertencia.");
+            }
+        }
+
+        public void ListadoImprimir()
+        {
+            try
+            {
+                MessageBox.Show("Producción <LISTADO_IMPRIMIR>","Información");
+                if (TokenActual.Idtkn.Equals(2) || TokenActual.Idtkn.Equals(46) || TokenActual.Idtkn.Equals(48) || TokenActual.Idtkn.Equals(44) || TokenActual.Idtkn.Equals(45))
+                {
+                    TipoVar();
+                    Listado();
+                }
+                else
+                {
+                    //sale de la produccion.
+                }
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la producción <LISTADO_IMPRIMIR>","Advertencia.");
+            }
+        }
+
+        public void Listado()
+        {
+            try
+            {
+                MessageBox.Show("Producción <LISTADO>","Informacion.");
+                if (TokenActual.Idtkn.Equals(25))
+                {
+                    Parea(25);//+
+                    TipoVar();
+                    Listado();
+                }
+                else
+                {
+                    //sale de la produccion.
+                }
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la produccion <LISTADO>","Advertencia.");
             }
         }
 
