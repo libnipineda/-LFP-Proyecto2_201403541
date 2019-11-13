@@ -205,7 +205,7 @@ namespace _LFP_Proyecto2_201403541
                         else
                         {
                             AnalizarTkn(concatenar); i--; estado = estado - 1; estado = 0;
-                            AgregarListaA(nutknen, concatenar, 2, "Numero.", fila, columna);
+                            AgregarListaA(nutknen, concatenar, 48, "Decimal.", fila, columna);
                             nutknen++; concatenar = "";
                         }
                         break;
@@ -451,6 +451,10 @@ namespace _LFP_Proyecto2_201403541
 
                 case "false":
                     token = "Palabra Reservada."; idtkn = 45;
+                    break;
+
+                case "graficarVector":
+                    token = "Palabra Reservada."; idtkn = 47;
                     break;
 
                 default:
