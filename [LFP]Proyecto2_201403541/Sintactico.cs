@@ -99,6 +99,10 @@ namespace _LFP_Proyecto2_201403541
                 {
                     Imprimir(); Instruccion();
                 }
+                else if (TokenActual.Idtkn.Equals(35))
+                {
+                    Switch(); Instruccion();
+                }
                 else
                 {
                     // sale de la producción.
@@ -423,6 +427,71 @@ namespace _LFP_Proyecto2_201403541
             {
                 Parea(0);
                 MessageBox.Show("Error en la produccion <LISTADO>","Advertencia.");
+            }
+        }
+
+        public void Switch()
+        {
+            try
+            {
+                MessageBox.Show("Producción <SWITCH>","Información.");
+                Parea(35);//switch
+                Parea(6);//(
+                Parea(46);//cadena
+                Parea(8);//)
+                Parea(9);//{
+                EstructuraSwitch();
+                Parea(10);//}
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la producción <SWITCH>","Advertencia.");
+            }
+        }
+
+        public void EstructuraSwitch()
+        {
+            try
+            {
+                MessageBox.Show("Producción <ESTRUCTURA_SWITCH>","Informacion.");
+                Parea(36);//case
+                TipoVar();
+                Parea(39);//:
+                Instruccion();
+                Parea(37);//break
+                Parea(18);//;
+                EstSwitp();
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la producción <ESTRUTURA_SWITCH>","Advertencia.");
+            }
+        }
+
+        public void EstSwitp()
+        {
+            try
+            {
+                MessageBox.Show("Producción <EST_SWITP>","Información.");
+                if (TokenActual.Idtkn.Equals(36))
+                {
+                    EstructuraSwitch();
+                }
+                else
+                {
+                    Parea(38);//default
+                    Parea(39);//:
+                    Instruccion();
+                    Parea(37);//break
+                    Parea(18);//;
+                }
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la producción <EST_SWITP>","Advertencia.");
             }
         }
 
