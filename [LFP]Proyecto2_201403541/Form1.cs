@@ -78,7 +78,7 @@ namespace _LFP_Proyecto2_201403541
 
             lex.Scanner(richTextBox1.Text);
             sin.Parsear(lex.getToken());
-            //sin.Ejecutar();
+            sin.Ejecutar();
         }
 
         private void tablaTokenToolStripMenuItem_Click(object sender, EventArgs e)

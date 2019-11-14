@@ -149,7 +149,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <TIPO>.", "Información.");
+                //MessageBox.Show("Produccion <TIPO>.", "Información.");
+                Console.WriteLine("Produccion <TIPO>.");
                 if (TokenActual.Idtkn.Equals(11))
                 {
                     Parea(11);//int
@@ -182,7 +183,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Producción <LISTA_VAR>", "Información.");
+                //MessageBox.Show("Producción <LISTA_VAR>", "Información.");
+                Console.WriteLine("Producción <LISTA_VAR>");
                 if (TokenActual.Idtkn.Equals(30))
                 {
                     Parea(30);//[
@@ -265,7 +267,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Producción <VALOR_ASIGNACION>", "Informacion.");
+                //MessageBox.Show("Producción <VALOR_ASIGNACION>", "Informacion.");
+                Console.WriteLine("Producción <VALOR_ASIGNACION>");
                 if (TokenActual.Idtkn.Equals(16))
                 {
                     Parea(16);//,
@@ -551,7 +554,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Producción <EXPRESION>", "Información.");
+                //MessageBox.Show("Producción <EXPRESION>", "Información.");
+                Console.WriteLine("Producción <EXPRESION>", "Información.");
                 if (TokenActual.Idtkn.Equals(19) || TokenActual.Idtkn.Equals(27) || TokenActual.Idtkn.Equals(25) || TokenActual.Idtkn.Equals(26))
                 {
                     ListaArit();
@@ -577,7 +581,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("producción <M>.", "Información.");
+                //MessageBox.Show("producción <M>.", "Información.");
+                Console.WriteLine("producción <M>.");
                 if (TokenActual.Idtkn.Equals(2) || TokenActual.Idtkn.Equals(46) || TokenActual.Idtkn.Equals(48))
                 {
                     Valor1();
@@ -695,7 +700,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <IFP>", "Información.");
+                //MessageBox.Show("Produccion <IFP>", "Información.");
+                Console.WriteLine("Produccion <IFP>");
                 if (TokenActual.Idtkn.Equals(34))
                 {
                     Parea(34);//else
