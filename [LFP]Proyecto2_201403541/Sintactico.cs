@@ -118,7 +118,7 @@ namespace _LFP_Proyecto2_201403541
                 }
                 else if (TokenActual.Idtkn.Equals(43))
                 {
-                    //WHILE(); Instruccion();
+                    WHILE(); Instruccion();
                 }
                 else
                 {
@@ -883,6 +883,26 @@ namespace _LFP_Proyecto2_201403541
             {
                 Parea(0);
                 MessageBox.Show("Error en la produccion <INP>.", "Advertencia.");
+            }
+        }
+
+        public void WHILE()
+        {
+            try
+            {
+                MessageBox.Show("Produccion <WHILE>.", "Informacion");
+                Parea(43);//while
+                Parea(6);//(
+                Sentencia();
+                Parea(8);//)
+                Parea(9);//{
+                Instruccion();
+                Parea(10);//}
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la produccion <WHILE>.", "Advertencia.");
             }
         }
 
