@@ -10,28 +10,19 @@ namespace _LFP_Proyecto2_201403541
 {
     class Sintactico
     {
-        /* correlativo y lexema:
+        /*--------------------------------------------------- correlativo y lexema:
          * 1  -> class, 2  -> numero, 3  -> static, 4  -> void, 5  -> Main, 6  -> (, 7  ->  args, 8  -> ), 9 -> {, 10 -> }, 11 -> int, 12 -> float
            13 -> bool, 14 -> char, 15 -> string o String, 16 -> ,, 17 -> -, 18 -> ;, 19 -> /, 20 -> =, 21 -> ==, 22 -> >, 23 -> <, 24 -> !=, 25 -> +, 26 -> -
            27 -> *, 28 -> Console, 29 -> Write , 30 -> [, 31 -> ], 32 -> new, 33 -> if, 34 -> else, 35 -> switch, 36 -> case, 37 -> break, 38 -> default
            39 -> :, 40 -> for, 41 -> <=, 42 -> >=, 43 -> while, 44 -> true, 45 -> false, 46 -> cadena, 0 -> Ultimo token, 47 -> graficarVector, 48 -> decimal
          */
 
-        // variables
+        //--------------------------------------------------- variables ---------------------------------------------------
         int numpre;
         public int numerror;
         Lista TokenActual;
         List<Lista> listatokens;
-        List<Parser> ListaC = new List<Parser>();
-
-        //public void Parsear(LinkedList<Lista> tokens)
-        //{
-        //    this.listatokens = tokens;
-        //    numpre = 0; // siguiente elemento.
-        //    TokenActual = listatokens.ElementAt(numpre); // primer elemento de la lista.
-        //    Console.WriteLine(tokens.Count());
-        //    Inicio(); // primera producción.
-        //}       
+        List<Parser> ListaC = new List<Parser>();           
 
         public void Parsear(List<Lista> tokens)
         {
@@ -43,6 +34,7 @@ namespace _LFP_Proyecto2_201403541
             numpre = 0;
             Inicio();
         }
+        // --------------------------------------------------- INICIO DE LAS PRODUCCIONES DE LA GRAMATICA ---------------------------------------------------
 
         public void Inicio()
         {
@@ -905,8 +897,10 @@ namespace _LFP_Proyecto2_201403541
                 MessageBox.Show("Error en la produccion <WHILE>.", "Advertencia.");
             }
         }
+        //--------------------------------------------------- FIN DE LAS PRODUCCIONES DE LA GRAMATICA ---------------------------------------------------
 
-        //Varibles para crear reporte sintactico
+
+        //--------------------------------------------------- Varibles para crear reporte sintactico
         int num, fila;
         string tkn, lex, obtuvo;
 
