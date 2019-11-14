@@ -20,7 +20,7 @@ namespace _LFP_Proyecto2_201403541
         int numpre;
         Lista TokenActual;
         //LinkedList<Lista> listatokens;
-        List<Lista> listatokens;
+        List<Lista> listatokens;        
 
         //public void Parsear(LinkedList<Lista> tokens)
         //{
@@ -241,6 +241,7 @@ namespace _LFP_Proyecto2_201403541
                 {
                     Parea(20);//=
                     TipoVar();
+                    Expresion();
                     ValorAsignacion();
                 }
                 else if (TokenActual.Idtkn.Equals(18))
@@ -495,11 +496,101 @@ namespace _LFP_Proyecto2_201403541
             }
         }
 
+        public void Expresion()
+        {
+            try
+            {
+                MessageBox.Show("Producción <EXPRESION>","Información.");
+                if (TokenActual.Idtkn.Equals(6) || TokenActual.Idtkn.Equals(2) || TokenActual.Idtkn.Equals(48) || TokenActual.Idtkn.Equals(46))
+                {
+                    T();
+                    EP();
+                }
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la producción <EXPRESION>", "Advertencia.");
+            }
+        }
+
+        public void T()
+        {
+            try
+            {
+                MessageBox.Show("Producción <T>","Información");
+                if (TokenActual.Idtkn.Equals(6))
+                {
+                    Parea(6);//(
+                    Expresion();
+                    Parea(8);//)
+                }
+                else if (TokenActual.Idtkn.Equals(2))
+                {
+                    Parea(2);//numero
+                }
+                else if (TokenActual.Idtkn.Equals(48))
+                {
+                    Parea(48);//decimal
+                }
+                else if (TokenActual.Idtkn.Equals(46))
+                {
+                    Parea(46);//cadena
+                }
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error de en la producción <T>","Advertencia.");
+            }
+        }
+
+        public void EP()
+        {
+            try
+            {
+                MessageBox.Show("Producción <EP>","Información");
+                if (TokenActual.Idtkn.Equals(25))
+                {
+                    Parea(25);//+
+                    T();
+                    EP();
+                }
+                else if (TokenActual.Idtkn.Equals(26))
+                {
+                    Parea(26);//-
+                    T();
+                    EP();
+                }
+                else if (TokenActual.Idtkn.Equals(27))
+                {
+                    Parea(27);//*
+                    T();
+                    EP();
+                }
+                else if (TokenActual.Idtkn.Equals(19))
+                {
+                    Parea(19);//signo division
+                    T();
+                    EP();
+                }
+                else 
+                {
+                    // sale de la producción.
+                }
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la produccion <EP>","Advertencia.");
+            }
+        }
+
         public void Parea(int valor)
         {
             if (!valor.Equals(TokenActual.Idtkn)) //Verifica que los valores coincidan
             {
-                MessageBox.Show("Error se esperaba " + valor.ToString() + "y se obtuvo token: " + TokenActual.Idtkn + "->" + TokenActual.Lexema);
+                MessageBox.Show("Error se esperaba " + TokenActual.Lexema + " y se obtuvo token: " + TokenActual.Lexema);
             }
             if (!TokenActual.Idtkn.Equals(0)) // Verifica si ya llego al tope de la lista.
             {
