@@ -13,6 +13,8 @@ namespace _LFP_Proyecto2_201403541
         List<Lista> ListaA = new List<Lista>();
         List<Elista> ListaB = new List<Elista>();
 
+        public int numerror = 0;
+
         int idtkn, nutknen = 0, fila = 1, columna = 1;
         string token = "";
         String concatenar = "", Etoken = "";
@@ -494,12 +496,14 @@ namespace _LFP_Proyecto2_201403541
         {
             if (ListaB.Count != 0)
             {
+                numerror = 1; 
                 Reporte html = new Reporte();
                 html.ReporteE(ListaB);
                 Process.Start(@"C:\Users\libni\OneDrive\Escritorio\ReporteError.html");
             }
             else
             {
+                numerror = 0;
                 MessageBox.Show("No se encontro errores.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }

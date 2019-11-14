@@ -18,7 +18,8 @@ namespace _LFP_Proyecto2_201403541
          */
 
         // variables
-        int numpre, numerror = 0;
+        int numpre;
+        public int numerror = 0;
         Lista TokenActual;        
         List<Lista> listatokens;
         List<Parser> ListaC = new List<Parser>();
@@ -104,6 +105,18 @@ namespace _LFP_Proyecto2_201403541
                 {
                     Switch(); Instruccion();
                 }
+                else if (TokenActual.Idtkn.Equals(33))
+                {
+                    //IF(); Instruccion();
+                }
+                else if (TokenActual.Idtkn.Equals(40))
+                {
+                    //FOR(); Instruccion();
+                }
+                else if (TokenActual.Idtkn.Equals(43))
+                {
+                    //WHILE(); Instruccion();
+                }
                 else
                 {
                     // sale de la producción.
@@ -123,8 +136,12 @@ namespace _LFP_Proyecto2_201403541
                 MessageBox.Show("Produccion <DECLARACION>", "Informacion.");
                 if (TokenActual.Idtkn.Equals(11) || TokenActual.Idtkn.Equals(12) || TokenActual.Idtkn.Equals(13) || TokenActual.Idtkn.Equals(14) || TokenActual.Idtkn.Equals(15))
                 {
-                    Tipo(); ListaVar();                    
+                    Tipo(); ListaVar();
                 }
+                //else if (TokenActual.Idtkn.Equals(30)  || TokenActual.Idtkn.Equals(46))
+                //{
+                //    ListaVar();
+                //}
             }
             catch(Exception)
             {
@@ -140,23 +157,23 @@ namespace _LFP_Proyecto2_201403541
                 MessageBox.Show("Produccion <TIPO>.", "Información.");
                 if (TokenActual.Idtkn.Equals(11))
                 {
-                    Parea(11);
+                    Parea(11);//int
                 }
                 else if (TokenActual.Idtkn.Equals(12))
                 {
-                    Parea(12);
+                    Parea(12);//float
                 }
                 else if (TokenActual.Idtkn.Equals(13))
                 {
-                    Parea(13);
+                    Parea(13);//bool
                 }
                 else if (TokenActual.Idtkn.Equals(14))
                 {
-                    Parea(14);
+                    Parea(14);//char
                 }
                 else if (TokenActual.Idtkn.Equals(15))
                 {
-                    Parea(15);
+                    Parea(15);//string
                 }
             }
             catch (Exception)
@@ -183,7 +200,8 @@ namespace _LFP_Proyecto2_201403541
                 else if (TokenActual.Idtkn.Equals(46))
                 {
                     Parea(46);//cadena
-                    ValorAsignacion();
+                    J();
+                    //ValorAsignacion();
                     ListaVar();
                 }
                 else
@@ -195,6 +213,27 @@ namespace _LFP_Proyecto2_201403541
             {
                 MessageBox.Show("Error producción <LISTA_VAR>","Advertencia.");
                 Parea(0);
+            }
+        }
+
+        public void J()
+        {
+            try
+            {
+                MessageBox.Show("Producción <J>","Información.");
+                if (TokenActual.Idtkn.Equals(16) || TokenActual.Idtkn.Equals(20) || TokenActual.Idtkn.Equals(18))
+                {
+                    ValorAsignacion();
+                }
+                else if (TokenActual.Idtkn.Equals(19) || TokenActual.Idtkn.Equals(27) || TokenActual.Idtkn.Equals(25) || TokenActual.Idtkn.Equals(26))
+                {
+                    Expresion();
+                }
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la producción <J>","Advertencia.");
             }
         }
 
@@ -243,7 +282,7 @@ namespace _LFP_Proyecto2_201403541
                     Parea(20);//=
                     TipoVar();
                     Expresion();
-                    ValorAsignacion();
+                    J();
                 }
                 else if (TokenActual.Idtkn.Equals(18))
                 {
@@ -502,16 +541,15 @@ namespace _LFP_Proyecto2_201403541
             try
             {
                 MessageBox.Show("Producción <EXPRESION>","Información.");
-                if (TokenActual.Idtkn.Equals(2) || TokenActual.Idtkn.Equals(46) || TokenActual.Idtkn.Equals(48))
-                {
-                    Valor1();
+                if (TokenActual.Idtkn.Equals(19) || TokenActual.Idtkn.Equals(27) || TokenActual.Idtkn.Equals(25) || TokenActual.Idtkn.Equals(26))
+                {                    
                     ListaArit();
                     Valor1();
                 }                
                 else if (TokenActual.Idtkn.Equals(6))
                 {
                     Parea(6);//(
-                    Expresion();
+                    ListaVar();
                     Parea(8);//)
                 }
                 else
@@ -583,13 +621,14 @@ namespace _LFP_Proyecto2_201403541
         //Varibles para crear reporte sintactico
         int num, fila;
         string tkn, lex, obtuvo;
+
         public void Parea(int valor)
         {
             if (!valor.Equals(TokenActual.Idtkn)) //Verifica que los valores coincidan
             {
                 MessageBox.Show("Error se esperaba '" + TokenActual.Lexema + "' y se obtuvo token: '" + TokenActual.Lexema + "'");
 
-                numerror += 1;
+                numerror = 1;
 
                 num = TokenActual.Numero;       fila = TokenActual.Fila;            tkn = TokenActual.Tkn;
                 lex = TokenActual.Lexema;       obtuvo = TokenActual.Lexema;
@@ -603,13 +642,10 @@ namespace _LFP_Proyecto2_201403541
             }
             if (!TokenActual.Idtkn.Equals(0)) // Verifica si ya llego al tope de la lista.
             {
+                numerror = 0;
                 numpre += 1;
                 TokenActual = listatokens.ElementAt(numpre);
             }
-            else
-            {
-                Ejecutar();
-            }           
         }
 
         public void Reporte4()

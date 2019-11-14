@@ -35,6 +35,10 @@ namespace _LFP_Proyecto2_201403541
                 richTextBox1.Text = leer.ReadToEnd();
                 leer.Close();
             }
+
+            List<Lista> ListaA = new List<Lista>();
+
+            ListaA.Clear();
         }
 
         private void guardarComoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -71,9 +75,7 @@ namespace _LFP_Proyecto2_201403541
         {            
             lex.Scanner(richTextBox1.Text);
             sin.Parsear(lex.getToken());
-            //LinkedList<Lista> listas = new LinkedList<Lista>();
-            //listas.AddLast(new Lista(0, "ultimo", 0, "Ultimo Valor", 0, 0));
-            //sin.Parsear(listas);
+            sin.Ejecutar();            
         }
 
         private void tablaTokenToolStripMenuItem_Click(object sender, EventArgs e)
