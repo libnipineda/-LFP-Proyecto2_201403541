@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +18,10 @@ namespace _LFP_Proyecto2_201403541
          */
 
         // variables
-        int numpre;
-        Lista TokenActual;
-        //LinkedList<Lista> listatokens;
-        List<Lista> listatokens;        
+        int numpre, numerror = 0;
+        Lista TokenActual;        
+        List<Lista> listatokens;
+        List<Parser> ListaC = new List<Parser>();
 
         //public void Parsear(LinkedList<Lista> tokens)
         //{
@@ -501,10 +502,21 @@ namespace _LFP_Proyecto2_201403541
             try
             {
                 MessageBox.Show("Producción <EXPRESION>","Información.");
-                if (TokenActual.Idtkn.Equals(6) || TokenActual.Idtkn.Equals(2) || TokenActual.Idtkn.Equals(48) || TokenActual.Idtkn.Equals(46))
+                if (TokenActual.Idtkn.Equals(2) || TokenActual.Idtkn.Equals(46) || TokenActual.Idtkn.Equals(48))
                 {
-                    T();
-                    EP();
+                    Valor1();
+                    ListaArit();
+                    Valor1();
+                }                
+                else if (TokenActual.Idtkn.Equals(6))
+                {
+                    Parea(6);//(
+                    Expresion();
+                    Parea(8);//)
+                }
+                else
+                {
+                    //sale de la produccion
                 }
             }
             catch (Exception)
@@ -514,88 +526,116 @@ namespace _LFP_Proyecto2_201403541
             }
         }
 
-        public void T()
+        public void Valor1()
         {
             try
             {
-                MessageBox.Show("Producción <T>","Información");
-                if (TokenActual.Idtkn.Equals(6))
-                {
-                    Parea(6);//(
-                    Expresion();
-                    Parea(8);//)
-                }
-                else if (TokenActual.Idtkn.Equals(2))
+                MessageBox.Show("Producción <VALOR1>","Información");
+                if (TokenActual.Idtkn.Equals(2))
                 {
                     Parea(2);//numero
-                }
-                else if (TokenActual.Idtkn.Equals(48))
-                {
-                    Parea(48);//decimal
                 }
                 else if (TokenActual.Idtkn.Equals(46))
                 {
                     Parea(46);//cadena
                 }
+                else if (TokenActual.Idtkn.Equals(48))
+                {
+                    Parea(48);//decimal
+                }                                
             }
             catch (Exception)
             {
                 Parea(0);
-                MessageBox.Show("Error de en la producción <T>","Advertencia.");
+                MessageBox.Show("Error de en la producción <VALOR1>","Advertencia.");
             }
         }
 
-        public void EP()
+        public void ListaArit()
         {
             try
             {
-                MessageBox.Show("Producción <EP>","Información");
-                if (TokenActual.Idtkn.Equals(25))
+                MessageBox.Show("Producción <LISTA_ARIT>","Información");
+                if (TokenActual.Idtkn.Equals(19))
                 {
-                    Parea(25);//+
-                    T();
-                    EP();
-                }
-                else if (TokenActual.Idtkn.Equals(26))
-                {
-                    Parea(26);//-
-                    T();
-                    EP();
+                    Parea(19);// signo division
                 }
                 else if (TokenActual.Idtkn.Equals(27))
                 {
                     Parea(27);//*
-                    T();
-                    EP();
                 }
-                else if (TokenActual.Idtkn.Equals(19))
+                else if (TokenActual.Idtkn.Equals(26))
                 {
-                    Parea(19);//signo division
-                    T();
-                    EP();
+                    Parea(26);//-
                 }
-                else 
+                else if (TokenActual.Idtkn.Equals(25))
                 {
-                    // sale de la producción.
+                    Parea(25);//+
                 }
             }
             catch (Exception)
             {
                 Parea(0);
-                MessageBox.Show("Error en la produccion <EP>","Advertencia.");
+                MessageBox.Show("Error en la produccion <LISTA_ARIT>","Advertencia.");
             }
         }
 
+        //Varibles para crear reporte sintactico
+        int num, fila;
+        string tkn, lex, obtuvo;
         public void Parea(int valor)
         {
             if (!valor.Equals(TokenActual.Idtkn)) //Verifica que los valores coincidan
             {
-                MessageBox.Show("Error se esperaba " + TokenActual.Lexema + " y se obtuvo token: " + TokenActual.Lexema);
+                MessageBox.Show("Error se esperaba '" + TokenActual.Lexema + "' y se obtuvo token: '" + TokenActual.Lexema + "'");
+
+                numerror += 1;
+
+                num = TokenActual.Numero;       fila = TokenActual.Fila;            tkn = TokenActual.Tkn;
+                lex = TokenActual.Lexema;       obtuvo = TokenActual.Lexema;
+                Parser aux = new Parser();
+                aux.num = num;
+                aux.fila = fila;
+                aux.tkn = tkn;
+                aux.lex = lex;
+                aux.obtuvo = obtuvo;
+                ListaC.Add(aux);
             }
             if (!TokenActual.Idtkn.Equals(0)) // Verifica si ya llego al tope de la lista.
             {
                 numpre += 1;
                 TokenActual = listatokens.ElementAt(numpre);
+            }
+            else
+            {
+                Ejecutar();
+            }           
+        }
+
+        public void Reporte4()
+        {
+            try
+            {
+                MessageBox.Show("Espere en un momento se abrira el reporte de token´s", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Reporte item = new Reporte();
+                item.ReporterSin(ListaC);
+                Process.Start(@"C:\Users\libni\OneDrive\Escritorio\ReporteSintactico.html");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo abrir el reporte de errores sintacticos", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void Ejecutar()
+        {
+            if (numerror != 0)
+            {
+                MessageBox.Show("Espere mientras se realiza la traduccion.","Informacion");
+            }
+            else
+            {
+                MessageBox.Show("Hay errores sintacticos, no se puede realizar la traduccion.", "Advertencia");
             }
         }
     }

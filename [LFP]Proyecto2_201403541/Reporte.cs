@@ -10,6 +10,7 @@ namespace _LFP_Proyecto2_201403541
     {
         string tabla = "";
         string Etabla = "";
+        string sin = "";
         string fecha = "Fecha: " + DateTime.Now.ToString();
 
         public void ReporteTkn(List<Lista> datos)
@@ -105,6 +106,52 @@ namespace _LFP_Proyecto2_201403541
                 ,"</html> " };
 
             System.IO.File.WriteAllLines(@"C:\Users\libni\OneDrive\Escritorio\ReporteError.html", text);
+        }
+
+        public void ReporterSin(List<Parser> info)
+        {
+            string url = "Ruta de archivo html" + @"C:\Users\libni\OneDrive\Escritorio\ReporteSintactico.html";
+
+            if (info.Count != 0)
+            {
+                for (int i = 0; i < info.Count; i++)
+                {
+                    sin = sin + "<tr>"
+                        + "<td><strong>" + info[i].num + "</strong></td>"
+                        + "<td><strong>" + info[i].fila + "</strong></td>"
+                        + "<td><strong>" + info[i].tkn + "</strong></td>"
+                        + "<td><strong>" + info[i].lex + "</strong></td>"
+                        + "<td><strong>" + info[i].obtuvo + "</strong></td>"                        
+                        + "</tr>";
+                }
+            }
+
+            string[] text = { "<html>"
+                ,"<head>"
+                ,"<title>TABLA DE ERRORES</title>"
+                ,"</head>"
+                ,"<body>"
+                ,"<h1> LFP PROYECTO NO.1 Listado de Errores</h1>"
+                ,"<p>"
+                ,fecha
+                ,"</p>"
+                ,"<p>"
+                ,url
+                ,"</p>"
+                ,"<table border>"
+                ,"<tr>"
+                ,"<td><strong>No</strong></td>"
+                ,"<td><strong>Fila</strong></td>"
+                ,"<td><strong>Columna</strong></td>"
+                ,"<td><strong>Caracter</strong></td>"
+                ,"<td><strong>Descripcion</strong></td>"
+                ,"</tr>"
+                ,sin
+                ,"</table>"
+                ,"</body>"
+                ,"</html> " };
+
+            System.IO.File.WriteAllLines(@"C:\Users\libni\OneDrive\Escritorio\ReporteSintactico.html", text);
         }
     }
 }
