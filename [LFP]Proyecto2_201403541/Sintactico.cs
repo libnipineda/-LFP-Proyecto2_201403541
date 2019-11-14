@@ -19,7 +19,7 @@ namespace _LFP_Proyecto2_201403541
 
         // variables
         int numpre;
-        public int numerror = 0;
+        public int numerror;
         Lista TokenActual;        
         List<Lista> listatokens;
         List<Parser> ListaC = new List<Parser>();
@@ -49,7 +49,8 @@ namespace _LFP_Proyecto2_201403541
             MessageBox.Show("Inicio de la Gramatica", "Información");
             try
             {
-                MessageBox.Show("Produccion <INICIO>.", "Información");
+                //MessageBox.Show("Produccion <INICIO>.", "Información");                
+                Console.WriteLine("Produccion <INICIO>.", "Información");                
                 Parea(1);//class
                 Parea(46);//cadena
                 Parea(9);//{
@@ -67,7 +68,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <ESTRUCTURA>", "Información");
+                //MessageBox.Show("Produccion <ESTRUCTURA>", "Información");
+                Console.WriteLine("Produccion <ESTRUCTURA>", "Información");
                 Parea(3);//static
                 Parea(4);//void
                 Parea(5);//Main
@@ -92,7 +94,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <INTRODUCCION>", "Informacion.");
+                //MessageBox.Show("Produccion <INTRODUCCION>", "Informacion.");
+                Console.WriteLine("Produccion <INTRODUCCION>");
                 if (TokenActual.Idtkn.Equals(11) || TokenActual.Idtkn.Equals(12) || TokenActual.Idtkn.Equals(13) || TokenActual.Idtkn.Equals(14) || TokenActual.Idtkn.Equals(15))
                 {
                     Declaracion(); Instruccion();
@@ -107,11 +110,11 @@ namespace _LFP_Proyecto2_201403541
                 }
                 else if (TokenActual.Idtkn.Equals(33))
                 {
-                    //IF(); Instruccion();
+                    IF(); Instruccion();
                 }
                 else if (TokenActual.Idtkn.Equals(40))
                 {
-                    //FOR(); Instruccion();
+                    FOR(); Instruccion();
                 }
                 else if (TokenActual.Idtkn.Equals(43))
                 {
@@ -138,10 +141,10 @@ namespace _LFP_Proyecto2_201403541
                 {
                     Tipo(); ListaVar();
                 }
-                //else if (TokenActual.Idtkn.Equals(30)  || TokenActual.Idtkn.Equals(46))
-                //{
-                //    ListaVar();
-                //}
+                else if (TokenActual.Idtkn.Equals(30) || TokenActual.Idtkn.Equals(46))
+                {
+                    ListaVar();
+                }
             }
             catch(Exception)
             {
@@ -200,8 +203,7 @@ namespace _LFP_Proyecto2_201403541
                 else if (TokenActual.Idtkn.Equals(46))
                 {
                     Parea(46);//cadena
-                    J();
-                    //ValorAsignacion();
+                    J();                    
                     ListaVar();
                 }
                 else
@@ -544,13 +546,11 @@ namespace _LFP_Proyecto2_201403541
                 if (TokenActual.Idtkn.Equals(19) || TokenActual.Idtkn.Equals(27) || TokenActual.Idtkn.Equals(25) || TokenActual.Idtkn.Equals(26))
                 {                    
                     ListaArit();
-                    Valor1();
+                    M();
                 }                
-                else if (TokenActual.Idtkn.Equals(6))
+                else if (TokenActual.Idtkn.Equals(2) || TokenActual.Idtkn.Equals(6) || TokenActual.Idtkn.Equals(46) || TokenActual.Idtkn.Equals(48))
                 {
-                    Parea(6);//(
-                    ListaVar();
-                    Parea(8);//)
+                    M();
                 }
                 else
                 {
@@ -561,6 +561,29 @@ namespace _LFP_Proyecto2_201403541
             {
                 Parea(0);
                 MessageBox.Show("Error en la producción <EXPRESION>", "Advertencia.");
+            }
+        }
+
+        public void M()
+        {
+            try
+            {
+                MessageBox.Show("producción <M>.","Información.");
+                if (TokenActual.Idtkn.Equals(2) || TokenActual.Idtkn.Equals(46) || TokenActual.Idtkn.Equals(48))
+                {
+                    Valor1();
+                }
+                else if (TokenActual.Idtkn.Equals(6))
+                {
+                    Parea(6);//(
+                    ListaVar();
+                    Parea(8);//)
+                }
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la producción <M>","Advertencia.");
             }
         }
 
@@ -618,6 +641,145 @@ namespace _LFP_Proyecto2_201403541
             }
         }
 
+        public void IF()
+        {
+            try
+            {
+                MessageBox.Show("Produccion <IF>.","Informacion");
+                Parea(33);//if
+                Parea(6);//(
+                Sentencia();
+                Parea(8);//)
+                Parea(9);//{
+                ArgumentoIf();
+                Parea(10);//}
+                IFP();
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la produccion <IF>", "Advertencia.");
+            }
+        }
+
+        public void Sentencia()
+        {
+            try
+            {
+                MessageBox.Show("Produccion <SENTENCIA>", "Informacion.");
+                Valor1();
+                ListaOp();
+                Valor1();
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la produccion <SENTENCIA>.", "Advertencia.");
+            }
+        }       
+
+        public void IFP()
+        {
+            try
+            {
+                MessageBox.Show("Produccion <IFP>","Información.");
+                if (TokenActual.Idtkn.Equals(34))
+                {
+                    Parea(34);//else
+                    InstIf();
+                }
+                else
+                {
+                    //sale de la produccion
+                }
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la produccion <IFP>","Advertencia.");
+            }
+        }
+
+        public void InstIf()
+        {
+            try
+            {
+                MessageBox.Show("Produccion <INST_IF>", "Información.");
+                if (TokenActual.Idtkn.Equals(9))
+                {
+                    Parea(9);//{
+                    ArgumentoIf();
+                    Parea(10);//}
+                }
+                else
+                {
+                    IF();
+                }
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la produccion <INST_IFP>", "Advertencia.");
+            }
+        }
+
+        public void ArgumentoIf()
+        {
+            try
+            {
+                MessageBox.Show("Produccion <ARGUMENTO_IF>", "Información.");
+                Instruccion();
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la produccion <ARGUMENTO_IF>", "Advertencia.");
+            }
+        }
+
+        public void ListaOp()
+        {
+            try
+            {
+                MessageBox.Show("Produccion <LISTA_OP>", "Informacion.");
+                if (TokenActual.Idtkn.Equals(21))
+                {
+                    Parea(21);//==
+                }
+                else if (TokenActual.Idtkn.Equals(22))
+                {
+                    Parea(22);//>
+                }
+                else if (TokenActual.Idtkn.Equals(23))
+                {
+                    Parea(23);//<
+                }
+                else if (TokenActual.Idtkn.Equals(46))
+                {
+                    Parea(46);//!
+                    Parea(20);//=
+                }
+            }
+            catch (Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la produccion <LISTA_OP>.", "Advertencia.");
+            }
+        }
+
+        public void FOR()
+        {
+            try
+            {
+                MessageBox.Show("Produccion <FOR>.","Informacion");
+            }
+            catch(Exception)
+            {
+                Parea(0);
+                MessageBox.Show("Error en la produccion <FOR>.", "Advertencia.");
+            }
+        }
+
         //Varibles para crear reporte sintactico
         int num, fila;
         string tkn, lex, obtuvo;
@@ -626,7 +788,7 @@ namespace _LFP_Proyecto2_201403541
         {
             if (!valor.Equals(TokenActual.Idtkn)) //Verifica que los valores coincidan
             {
-                MessageBox.Show("Error se esperaba '" + TokenActual.Lexema + "' y se obtuvo token: '" + TokenActual.Lexema + "'");
+                MessageBox.Show("Error se esperaba '" + TokenActual.Lexema + "' y se obtuvo token: '" + TokenActual.Lexema + "'" + "en la fila: " + TokenActual.Fila,"Error");
 
                 numerror = 1;
 
@@ -641,21 +803,28 @@ namespace _LFP_Proyecto2_201403541
                 ListaC.Add(aux);
             }
             if (!TokenActual.Idtkn.Equals(0)) // Verifica si ya llego al tope de la lista.
-            {
-                numerror = 0;
+            {                
                 numpre += 1;
-                TokenActual = listatokens.ElementAt(numpre);
+                TokenActual = listatokens.ElementAt(numpre);                
             }
+            numerror = 0;
         }
 
         public void Reporte4()
         {
             try
             {
-                MessageBox.Show("Espere en un momento se abrira el reporte de token´s", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Reporte item = new Reporte();
-                item.ReporterSin(ListaC);
-                Process.Start(@"C:\Users\libni\OneDrive\Escritorio\ReporteSintactico.html");
+                if (ListaC.Count != 0)
+                {
+                    MessageBox.Show("Espere en un momento se abrira el reporte de errores sintacticos", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Reporte item = new Reporte();
+                    item.ReporterSin(ListaC);
+                    Process.Start(@"C:\Users\libni\OneDrive\Escritorio\ReporteSintactico.html");
+                }
+                else
+                {
+
+                }
             }
             catch (Exception)
             {
@@ -665,7 +834,7 @@ namespace _LFP_Proyecto2_201403541
 
         public void Ejecutar()
         {
-            if (numerror != 0)
+            if (numerror == 0)
             {
                 MessageBox.Show("Espere mientras se realiza la traduccion.","Informacion");
             }

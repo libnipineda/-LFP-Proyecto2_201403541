@@ -23,6 +23,10 @@ namespace _LFP_Proyecto2_201403541
 
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            List<Lista> ListaA = new List<Lista>();
+            ListaA.Clear();
+
             OpenFileDialog abrir = new OpenFileDialog();
             abrir.Filter = "Archivo|*.cs";
             abrir.Title = "Abrir Archivo";
@@ -34,11 +38,7 @@ namespace _LFP_Proyecto2_201403541
                 StreamReader leer = new StreamReader(abrir.FileName);
                 richTextBox1.Text = leer.ReadToEnd();
                 leer.Close();
-            }
-
-            List<Lista> ListaA = new List<Lista>();
-
-            ListaA.Clear();
+            }            
         }
 
         private void guardarComoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -72,10 +72,13 @@ namespace _LFP_Proyecto2_201403541
         }
 
         private void generarTraduccionToolStripMenuItem_Click(object sender, EventArgs e)
-        {            
+        {
+            List<Lista> ListaA = new List<Lista>();
+            ListaA.Clear();
+
             lex.Scanner(richTextBox1.Text);
             sin.Parsear(lex.getToken());
-            sin.Ejecutar();            
+            //sin.Ejecutar();
         }
 
         private void tablaTokenToolStripMenuItem_Click(object sender, EventArgs e)
