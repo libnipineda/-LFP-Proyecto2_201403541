@@ -195,7 +195,7 @@ namespace _LFP_Proyecto2_201403541
                 else if (TokenActual.Idtkn.Equals(46))
                 {
                     Parea(46);//cadena
-                    J();
+                    ValorAsignacion();
                     ListaVar();
                 }
                 else
@@ -210,26 +210,27 @@ namespace _LFP_Proyecto2_201403541
             }
         }
 
-        public void J()
-        {
-            try
-            {
-                MessageBox.Show("Producción <J>", "Información.");
-                if (TokenActual.Idtkn.Equals(16) || TokenActual.Idtkn.Equals(20) || TokenActual.Idtkn.Equals(18))
-                {
-                    ValorAsignacion();
-                }
-                else if (TokenActual.Idtkn.Equals(19) || TokenActual.Idtkn.Equals(27) || TokenActual.Idtkn.Equals(25) || TokenActual.Idtkn.Equals(26))
-                {
-                    Expresion();
-                }
-            }
-            catch (Exception)
-            {
-                Parea(0);
-                MessageBox.Show("Error en la producción <J>", "Advertencia.");
-            }
-        }
+        //public void J()
+        //{
+        //    try
+        //    {
+        //        MessageBox.Show("Producción <J>", "Información.");
+        //        if (TokenActual.Idtkn.Equals(16) || TokenActual.Idtkn.Equals(20) || TokenActual.Idtkn.Equals(18))
+        //        {
+        //            ValorAsignacion();
+        //        }
+        //        else //if (TokenActual.Idtkn.Equals(19) || TokenActual.Idtkn.Equals(27) || TokenActual.Idtkn.Equals(25) || TokenActual.Idtkn.Equals(26))
+        //        {
+        //            Parea(46);//cadena
+        //            Expresion();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        Parea(0);
+        //        MessageBox.Show("Error en la producción <J>", "Advertencia.");
+        //    }
+        //}
 
         public void ValorArreglo()
         {
@@ -276,11 +277,17 @@ namespace _LFP_Proyecto2_201403541
                     Parea(20);//=
                     TipoVar();
                     Expresion();
-                    J();
+                    ValorAsignacion();
                 }
                 else if (TokenActual.Idtkn.Equals(18))
                 {
                     Parea(18);//;
+                    ValorAsignacion();
+                }
+                else if (TokenActual.Idtkn.Equals(2) || TokenActual.Idtkn.Equals(46) || TokenActual.Idtkn.Equals(48))
+                {
+                    Valor1();
+                    Expresion();
                     ValorAsignacion();
                 }
                 else
@@ -299,7 +306,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Producción <OTROS>", "Información.");
+                //MessageBox.Show("Producción <OTROS>", "Información.");
+                Console.WriteLine("Producción <OTROS>");
                 if (TokenActual.Idtkn.Equals(11) || TokenActual.Idtkn.Equals(12) || TokenActual.Idtkn.Equals(13) || TokenActual.Idtkn.Equals(14) || TokenActual.Idtkn.Equals(15))
                 {
                     Tipo();
@@ -321,7 +329,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Producción <TIPO_VAR>", "Información.");
+                //MessageBox.Show("Producción <TIPO_VAR>", "Información.");
+                Console.WriteLine("Producción <TIPO_VAR>");
                 if (TokenActual.Idtkn.Equals(2))
                 {
                     Parea(2);//numero
@@ -354,7 +363,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Producción <ARGUMENTO>", "Información");
+                //MessageBox.Show("Producción <ARGUMENTO>", "Información");
+                Console.WriteLine("Producción <ARGUMENTO>");
                 if (TokenActual.Idtkn.Equals(16))
                 {
                     Parea(16);//,
@@ -377,7 +387,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Producción <IMPRIMIR>", "Información.");
+                //MessageBox.Show("Producción <IMPRIMIR>", "Información.");
+                Console.WriteLine("Producción <IMPRIMIR>");
                 if (TokenActual.Idtkn.Equals(47))
                 {
                     GraficarV();
@@ -404,7 +415,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Producción <GRAFICAR_V>", "Información.");
+                //MessageBox.Show("Producción <GRAFICAR_V>", "Información.");
+                Console.WriteLine("Producción <GRAFICAR_V>");
                 Parea(47);//graficarVector
                 Parea(6);//(
                 Parea(46);//cadena
@@ -424,7 +436,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Producción <LISTADO_IMPRIMIR>", "Información");
+                //MessageBox.Show("Producción <LISTADO_IMPRIMIR>", "Información");
+                Console.WriteLine("Producción <LISTADO_IMPRIMIR>");
                 if (TokenActual.Idtkn.Equals(2) || TokenActual.Idtkn.Equals(46) || TokenActual.Idtkn.Equals(48) || TokenActual.Idtkn.Equals(44) || TokenActual.Idtkn.Equals(45))
                 {
                     TipoVar();
@@ -446,7 +459,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Producción <LISTADO>", "Informacion.");
+                //MessageBox.Show("Producción <LISTADO>", "Informacion.");
+                Console.WriteLine("Producción <LISTADO>");
                 if (TokenActual.Idtkn.Equals(25))
                 {
                     Parea(25);//+
@@ -469,7 +483,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Producción <SWITCH>", "Información.");
+                //MessageBox.Show("Producción <SWITCH>", "Información.");
+                Console.WriteLine("Producción <SWITCH>");
                 Parea(35);//switch
                 Parea(6);//(
                 Parea(46);//cadena
@@ -489,7 +504,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Producción <ESTRUCTURA_SWITCH>", "Informacion.");
+                //MessageBox.Show("Producción <ESTRUCTURA_SWITCH>", "Informacion.");
+                Console.WriteLine("Producción <ESTRUCTURA_SWITCH>");
                 Parea(36);//case
                 TipoVar();
                 Parea(39);//:
@@ -509,7 +525,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Producción <EST_SWITP>", "Información.");
+                //MessageBox.Show("Producción <EST_SWITP>", "Información.");
+                Console.WriteLine("Producción <EST_SWITP>");
                 if (TokenActual.Idtkn.Equals(36))
                 {
                     EstructuraSwitch();
@@ -583,7 +600,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Producción <VALOR1>", "Información");
+                //MessageBox.Show("Producción <VALOR1>", "Información");
+                Console.WriteLine("Producción <VALOR1>");
                 if (TokenActual.Idtkn.Equals(2))
                 {
                     Parea(2);//numero
@@ -608,7 +626,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Producción <LISTA_ARIT>", "Información");
+                //MessageBox.Show("Producción <LISTA_ARIT>", "Información");
+                Console.WriteLine("Producción <LISTA_ARIT>");
                 if (TokenActual.Idtkn.Equals(19))
                 {
                     Parea(19);// signo division
@@ -637,7 +656,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <IF>.", "Informacion");
+                //MessageBox.Show("Produccion <IF>.", "Informacion");
+                Console.WriteLine("Produccion <IF>.");
                 Parea(33);//if
                 Parea(6);//(
                 Sentencia();
@@ -658,7 +678,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <SENTENCIA>", "Informacion.");
+                //MessageBox.Show("Produccion <SENTENCIA>", "Informacion.");
+                Console.WriteLine("Produccion <SENTENCIA>");
                 Valor1();
                 ListaOp();
                 Valor1();
@@ -696,7 +717,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <INST_IF>", "Información.");
+                //MessageBox.Show("Produccion <INST_IF>", "Información.");
+                Console.WriteLine("Produccion <INST_IF>");
                 if (TokenActual.Idtkn.Equals(9))
                 {
                     Parea(9);//{
@@ -719,7 +741,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <ARGUMENTO_IF>", "Información.");
+                //MessageBox.Show("Produccion <ARGUMENTO_IF>", "Información.");
+                Console.WriteLine("Produccion <ARGUMENTO_IF>");
                 Instruccion();
             }
             catch (Exception)
@@ -733,7 +756,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <LISTA_OP>", "Informacion.");
+                //MessageBox.Show("Produccion <LISTA_OP>", "Informacion.");
+                Console.WriteLine("Produccion <LISTA_OP>");
                 if (TokenActual.Idtkn.Equals(20))
                 {
                     Parea(20);//=
@@ -765,7 +789,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <N>.", "Informacion");
+                //MessageBox.Show("Produccion <N>.", "Informacion");
+                Console.WriteLine("Produccion <N>.");
                 if (TokenActual.Idtkn.Equals(20))
                 {
                     Parea(20);//=
@@ -786,7 +811,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <FOR>.", "Informacion");
+                //MessageBox.Show("Produccion <FOR>.", "Informacion");
+                Console.WriteLine("Produccion <FOR>.");
                 Parea(40);//for
                 Parea(6);//(
                 OP();
@@ -810,7 +836,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <OP>.", "Informacion");
+                //MessageBox.Show("Produccion <OP>.", "Informacion");
+                Console.WriteLine("Produccion <OP>.");
                 Tipo();
                 Parea(46);//cadena
                 Parea(20);//=
@@ -827,7 +854,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <OP1>.", "Informacion");
+                //MessageBox.Show("Produccion <OP1>.", "Informacion");
+                Console.WriteLine("Produccion <OP1>.", "Informacion");
                 Parea(46);//cadena
                 ListaOp();
                 Valor1();
@@ -843,7 +871,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <INCREMENTO>.", "Informacion");                
+                //MessageBox.Show("Produccion <INCREMENTO>.", "Informacion");
+                Console.WriteLine("Produccion <INCREMENTO>.");
                 Parea(46);//cadena
                 Inp();
             }
@@ -858,7 +887,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <INP>.", "Informacion");
+                //MessageBox.Show("Produccion <INP>.", "Informacion");
+                Console.WriteLine("Produccion <INP>.");
                 if (TokenActual.Idtkn.Equals(25))
                 {
                     Parea(25);//+
@@ -882,7 +912,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <WHILE>.", "Informacion");
+                //MessageBox.Show("Produccion <WHILE>.", "Informacion");
+                Console.WriteLine("Produccion <WHILE>.");
                 Parea(43);//while
                 Parea(6);//(
                 Sentencia();
