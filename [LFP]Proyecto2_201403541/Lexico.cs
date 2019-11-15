@@ -10,10 +10,10 @@ namespace _LFP_Proyecto2_201403541
 {
     class Lexico
     {
-        List<Lista> ListaA = new List<Lista>();
+        List<Lista> ListaA = new List<Lista>();        
         List<Elista> ListaB = new List<Elista>();
 
-        public int numerror = 0;
+        public int numerrorlex;
 
         int idtkn, nutknen = 0, fila = 1, columna = 1;
         string token = "";
@@ -496,14 +496,15 @@ namespace _LFP_Proyecto2_201403541
         {
             if (ListaB.Count != 0)
             {
-                numerror = 1; 
+                numerrorlex = 1; 
                 Reporte html = new Reporte();
                 html.ReporteE(ListaB);
                 Process.Start(@"C:\Users\libni\OneDrive\Escritorio\ReporteError.html");
+                Ejecutar();
             }
             else
             {
-                numerror = 0;
+                numerrorlex = 0;
                 MessageBox.Show("No se encontro errores.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -511,6 +512,22 @@ namespace _LFP_Proyecto2_201403541
         public void Reporte3()
         {
 
+        }
+
+        public void Ejecutar()
+        {
+            Sintactico sin = new Sintactico();
+            int temp = sin.numerror;
+            if (numerrorlex == 0 && temp == 0)
+            {
+                MessageBox.Show("Espere mientras se realiza la traduccion.", "Informacion");
+                Funcionalidad funcionalidad = new Funcionalidad();
+                funcionalidad.ObtenerInfo(ListaA);
+            }
+            else
+            {
+                MessageBox.Show("Hay errores sintacticos, no se puede realizar la traduccion.", "Advertencia");
+            }
         }
 
         public List<Lista> getToken()

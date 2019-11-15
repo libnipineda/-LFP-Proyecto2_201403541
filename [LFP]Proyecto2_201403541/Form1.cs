@@ -70,13 +70,13 @@ namespace _LFP_Proyecto2_201403541
         private void generarTraduccionToolStripMenuItem_Click(object sender, EventArgs e)
         {            
             lex.Scanner(richTextBox1.Text);
-            sin.Parsear(lex.getToken());
-            sin.Ejecutar();
+            sin.Parsear(lex.getToken());            
         }
 
         private void tablaTokenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            lex.Reporte1();            
+            lex.Reporte1();
+            lex.Ejecutar();
         }
 
         private void tablaSímbolosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -96,7 +96,7 @@ namespace _LFP_Proyecto2_201403541
             List<Elista> ListaB = new List<Elista>();
 
             ListaA.Clear();            
-            ListaB.Clear();
+            ListaB.Clear();            
         }
 
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -105,6 +105,6 @@ namespace _LFP_Proyecto2_201403541
                 "LFP PRACTICA\n Uzzi Libni Aarón Pineda Solórzano\n carné:201403541 \n Sección: A-",
                 "Acerca de...");
         }
-        
+      
     }
 }

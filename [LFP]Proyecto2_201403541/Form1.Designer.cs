@@ -132,7 +132,7 @@
             // 
             this.tablaTokenToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.tablaTokenToolStripMenuItem.Name = "tablaTokenToolStripMenuItem";
-            this.tablaTokenToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.tablaTokenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tablaTokenToolStripMenuItem.Text = "Tabla Token";
             this.tablaTokenToolStripMenuItem.Click += new System.EventHandler(this.tablaTokenToolStripMenuItem_Click);
             // 
@@ -140,7 +140,7 @@
             // 
             this.tablaSímbolosToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.tablaSímbolosToolStripMenuItem.Name = "tablaSímbolosToolStripMenuItem";
-            this.tablaSímbolosToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.tablaSímbolosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tablaSímbolosToolStripMenuItem.Text = "Tabla símbolos";
             this.tablaSímbolosToolStripMenuItem.Click += new System.EventHandler(this.tablaSímbolosToolStripMenuItem_Click);
             // 
@@ -148,7 +148,7 @@
             // 
             this.tablaTokenErroresToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.tablaTokenErroresToolStripMenuItem.Name = "tablaTokenErroresToolStripMenuItem";
-            this.tablaTokenErroresToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.tablaTokenErroresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tablaTokenErroresToolStripMenuItem.Text = "Tabla Token Errores";
             this.tablaTokenErroresToolStripMenuItem.Click += new System.EventHandler(this.tablaTokenErroresToolStripMenuItem_Click);
             // 
@@ -172,7 +172,7 @@
             // 
             this.acercaDeToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.acercaDeToolStripMenuItem.Text = "Acerca de..";
             this.acercaDeToolStripMenuItem.Click += new System.EventHandler(this.acercaDeToolStripMenuItem_Click);
             // 

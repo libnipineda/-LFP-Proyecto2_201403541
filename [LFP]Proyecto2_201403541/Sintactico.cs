@@ -112,9 +112,13 @@ namespace _LFP_Proyecto2_201403541
                 {
                     WHILE(); Instruccion();
                 }
+                else if (TokenActual.Idtkn.Equals(46))
+                {
+                    Declaracion(); Instruccion();
+                }
                 else
                 {
-                    // sale de la producción.
+                    // sale de la producción.                    
                 }
             }
             catch (Exception)
@@ -128,7 +132,8 @@ namespace _LFP_Proyecto2_201403541
         {
             try
             {
-                MessageBox.Show("Produccion <DECLARACION>", "Informacion.");
+                //MessageBox.Show("Produccion <DECLARACION>", "Informacion.");
+                Console.WriteLine("Produccion <DECLARACION>");
                 if (TokenActual.Idtkn.Equals(11) || TokenActual.Idtkn.Equals(12) || TokenActual.Idtkn.Equals(13) || TokenActual.Idtkn.Equals(14) || TokenActual.Idtkn.Equals(15))
                 {
                     Tipo(); ListaVar();
@@ -969,9 +974,7 @@ namespace _LFP_Proyecto2_201403541
 
         public void Reporte4()
         {
-            try
-            {
-                if (ListaC.Count != 0)
+               if (ListaC.Count != 0)
                 {
                     MessageBox.Show("Espere en un momento se abrira el reporte de errores sintacticos", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Reporte item = new Reporte();
@@ -980,26 +983,8 @@ namespace _LFP_Proyecto2_201403541
                 }
                 else
                 {
-
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("No se pudo abrir el reporte de errores sintacticos", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public void Ejecutar()
-        {
-            if (numerror == 0)
-            {
-                MessageBox.Show("Espere mientras se realiza la traduccion.","Informacion");
-                Funcionalidad fun = new Funcionalidad();
-            }
-            else
-            {
-                MessageBox.Show("Hay errores sintacticos, no se puede realizar la traduccion.", "Advertencia");
-            }
-        }
+                    MessageBox.Show("No se pudo abrir el reporte de errores sintacticos", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }          
+        }      
     }
 }

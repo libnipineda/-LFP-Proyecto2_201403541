@@ -51,4 +51,9 @@ namespace _LFP_Proyecto2_201403541
         public string lex = "";
         public string obtuvo = "";
     }
+
+    class Traducir
+    {
+        public string valor = "";
+    }
 }
