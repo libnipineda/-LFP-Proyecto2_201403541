@@ -508,6 +508,11 @@ namespace _LFP_Proyecto2_201403541
             }
         }
 
+        public void Reporte3()
+        {
+
+        }
+
         public List<Lista> getToken()
         {
             return this.ListaA;

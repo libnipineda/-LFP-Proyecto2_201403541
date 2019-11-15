@@ -23,10 +23,6 @@ namespace _LFP_Proyecto2_201403541
 
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            List<Lista> ListaA = new List<Lista>();
-            ListaA.Clear();
-
             OpenFileDialog abrir = new OpenFileDialog();
             abrir.Filter = "Archivo|*.cs";
             abrir.Title = "Abrir Archivo";
@@ -72,10 +68,7 @@ namespace _LFP_Proyecto2_201403541
         }
 
         private void generarTraduccionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            List<Lista> ListaA = new List<Lista>();
-            ListaA.Clear();
-
+        {            
             lex.Scanner(richTextBox1.Text);
             sin.Parsear(lex.getToken());
             sin.Ejecutar();
@@ -88,7 +81,8 @@ namespace _LFP_Proyecto2_201403541
 
         private void tablaSímbolosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            lex.Reporte3();
+            sin.Reporte4();
         }
 
         private void tablaTokenErroresToolStripMenuItem_Click(object sender, EventArgs e)
@@ -101,7 +95,7 @@ namespace _LFP_Proyecto2_201403541
             List<Lista> ListaA = new List<Lista>();
             List<Elista> ListaB = new List<Elista>();
 
-            ListaA.Clear();
+            ListaA.Clear();            
             ListaB.Clear();
         }
 

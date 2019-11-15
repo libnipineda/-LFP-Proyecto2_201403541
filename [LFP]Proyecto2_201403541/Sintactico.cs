@@ -994,6 +994,7 @@ namespace _LFP_Proyecto2_201403541
             if (numerror == 0)
             {
                 MessageBox.Show("Espere mientras se realiza la traduccion.","Informacion");
+                Funcionalidad fun = new Funcionalidad();
             }
             else
             {
