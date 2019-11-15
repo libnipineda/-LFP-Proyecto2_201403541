@@ -19,7 +19,7 @@ namespace _LFP_Proyecto2_201403541
         }
 
         Lexico lex = new Lexico();
-        Sintactico sin = new Sintactico();        
+        Sintactico sin = new Sintactico();
 
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -34,7 +34,7 @@ namespace _LFP_Proyecto2_201403541
                 StreamReader leer = new StreamReader(abrir.FileName);
                 richTextBox1.Text = leer.ReadToEnd();
                 leer.Close();
-            }            
+            }
         }
 
         private void guardarComoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace _LFP_Proyecto2_201403541
         }
 
         private void generarTraduccionToolStripMenuItem_Click(object sender, EventArgs e)
-        {            
+        {
             lex.Scanner(richTextBox1.Text);
             sin.Parsear(lex.getToken());            
         }
@@ -77,6 +77,7 @@ namespace _LFP_Proyecto2_201403541
         {
             lex.Reporte1();
             lex.Ejecutar();
+            Mostrar();
         }
 
         private void tablaSímbolosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -95,8 +96,8 @@ namespace _LFP_Proyecto2_201403541
             List<Lista> ListaA = new List<Lista>();
             List<Elista> ListaB = new List<Elista>();
 
-            ListaA.Clear();            
-            ListaB.Clear();            
+            ListaA.Clear();
+            ListaB.Clear();
         }
 
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -105,6 +106,21 @@ namespace _LFP_Proyecto2_201403541
                 "LFP PRACTICA\n Uzzi Libni Aarón Pineda Solórzano\n carné:201403541 \n Sección: A-",
                 "Acerca de...");
         }
-      
+
+        public void Mostrar()
+        {
+            string ruta = @"C:\Users\libni\OneDrive\Escritorio\Comandos.txt";
+            try
+            {
+                StreamReader leer = new StreamReader(ruta);
+                richTextBox2.Text = leer.ReadToEnd();
+                leer.Close();
+            }
+            catch (Exception e)
+            {
+                richTextBox2.Text = e.Message;
+            }            
+        }
+
     }
 }
